@@ -72,13 +72,18 @@ export default function Dobra2Beneficios() {
     <section ref={sectionRef} className={`${styles.benefitsSection} ${isVisible ? styles.isVisible : ''}`}>
       {/* Coluna da Esquerda: Vídeo */}
       <div className={styles.videoColumn}>
+        {/* VÍDEO DE FUNDO DESFOCADO */}
         <video
-          autoPlay
-          loop
-          muted
-          playsInline
+          aria-hidden="true"
+          className={styles.videoBackground}
+          src="/videos/contox-hero-video.mp4"
+          autoPlay loop muted playsInline
+        />
+        {/* VÍDEO PRINCIPAL */}
+        <video
           className={styles.videoElement}
           src="/videos/contox-hero-video.mp4"
+          autoPlay loop muted playsInline
           // poster="/images/contox-benefits-poster.jpg"
         >
           Seu navegador não suporta a tag de vídeo.
@@ -88,15 +93,12 @@ export default function Dobra2Beneficios() {
       {/* Coluna da Direita: Conteúdo de Benefícios com estilo da Dobra 4 */}
       <div className={styles.contentColumn}>
         <h2 className={styles.sectionTitle}>Por que você não pode perder o CONTOX Goiânia:</h2>
-
         <p className={styles.sectionDescription}>{sectionDescriptionText}</p>
-
         <div className={styles.accordion}>
           {accordionItems.map((item, index) => (
             <div
                 key={index}
                 className={styles.accordionItem}
-                // Aplica um delay para cada item do acordeão aparecer em stagger
                 style={{ transitionDelay: `${0.4 + index * 0.15}s` }}
             >
               <button
@@ -115,7 +117,6 @@ export default function Dobra2Beneficios() {
             </div>
           ))}
         </div>
-
         <a href={finalCtaLink} target="_blank" rel="noopener noreferrer" className={styles.finalCtaLink}>
             {finalCtaText}
             <span>→</span>

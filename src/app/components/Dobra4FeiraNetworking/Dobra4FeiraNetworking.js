@@ -8,6 +8,7 @@ import styles from './Dobra4FeiraNetworking.module.css';
 export default function Dobra4FeiraNetworking() {
     const [openAccordion, setOpenAccordion] = useState(0); // Abrir o primeiro item por padrão
     const sectionRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false); // Adicionado estado para controlar visibilidade
 
     const handleAccordionClick = (index) => {
         setOpenAccordion(openAccordion === index ? null : index);
@@ -18,12 +19,12 @@ export default function Dobra4FeiraNetworking() {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add(styles.isVisible);
+                        setIsVisible(true); // Atualiza o estado
                         observer.unobserve(entry.target);
                     }
                 });
             },
-            { threshold: 0.25 } // Dispara quando 25% da seção está visível
+            { threshold: 0.25 }
         );
 
         if (sectionRef.current) {
@@ -31,19 +32,12 @@ export default function Dobra4FeiraNetworking() {
         }
 
         return () => {
-            // Note: A cleanup function should unobserve the target if it's still being observed.
-            // If the observer is already unobserved in the callback, this might not be strictly necessary,
-            // but it's good practice for component unmounting.
-            // Make sure 'entry.target' is available if needed here, or use sectionRef.current.
-            // A safer cleanup might just disconnect the observer if needed.
-            // Using sectionRef.current is safer if observer.unobserve(entry.target) already happened.
-             if (sectionRef.current && observer) {
+             if (sectionRef.current) {
                  observer.unobserve(sectionRef.current);
              }
         };
-    }, []); // Empty dependency array means this effect runs once on mount
+    }, []);
 
-    // Conteúdo da Dobra 4
     const title = "Explore as Maiores Novidades do Mercado:";
     const description = "Na feira comercial exclusiva do CONTOX Goiânia, você terá acesso direto às inovações que estão moldando o futuro da harmonização facial e estética avançada.";
 
@@ -63,18 +57,16 @@ export default function Dobra4FeiraNetworking() {
     ];
 
     const finalCtaText = "Transforme seu conhecimento em resultados reais. Garanta seu ingresso!";
-    const finalCtaLink = "https://link-de-vendas-contox.com.br"; // Link de CTA para garantir ingresso
+    const finalCtaLink = "https://link-de-vendas-contox.com.br";
 
-    // **VERIFIQUE O CAMINHO E NOME DA IMAGEM!**
-    const imageSrc = "/images/contox-event-details-main.jpg"; // Salve a imagem na pasta public/images
+    const imageSrc = "/images/contox-event-details-main.jpg";
 
     return (
-        <section ref={sectionRef} className={`${styles.dobraSection} scroll-section`}>
+        <section ref={sectionRef} className={`${styles.dobraSection} ${isVisible ? styles.isVisible : ''}`}>
             {/* Lado Esquerdo: Conteúdo e Acordeão */}
             <div className={styles.textSide}>
                 <h2 className={styles.sectionTitle}>{title}</h2>
                 <p className={styles.sectionDescription}>{description}</p>
-
                 <div className={styles.accordion}>
                     {accordionItems.map((item, index) => (
                         <div key={index} className={styles.accordionItem}>
@@ -94,7 +86,6 @@ export default function Dobra4FeiraNetworking() {
                         </div>
                     ))}
                 </div>
-
                 <a href={finalCtaLink} target="_blank" rel="noopener noreferrer" className={styles.finalCtaLink}>
                     {finalCtaText}
                     <span>→</span>
@@ -103,6 +94,14 @@ export default function Dobra4FeiraNetworking() {
 
             {/* Lado Direito: Imagem */}
             <div className={styles.mediaSide}>
+                {/* IMAGEM DE FUNDO DESFOCADA */}
+                <img
+                    aria-hidden="true"
+                    src={imageSrc}
+                    className={styles.mediaBackground}
+                    loading="lazy"
+                />
+                {/* IMAGEM PRINCIPAL */}
                 <img
                     src={imageSrc}
                     alt="Feira Comercial e Networking no CONTOX Goiânia"
