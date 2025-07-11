@@ -1,4 +1,6 @@
+
 import Hero from './components/Hero/Hero';
+import DobraPatrocinadores from './components/DobraPatrocinadores/DobraPatrocinadores'; // 1. IMPORTAR O CARROSSEL
 import Dobra2Beneficios from './components/Dobra2Beneficios/Dobra2Beneficios';
 import Dobra3Palestrantes from './components/Dobra3Palestrantes/Dobra3Palestrantes';
 import Dobra4FeiraNetworking from './components/Dobra4FeiraNetworking/Dobra4FeiraNetworking';
@@ -11,6 +13,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <DobraPatrocinadores /> {/* 2. ADICIONAR O COMPONENTE AQUI */}
       <Dobra2Beneficios />
       <Dobra3Palestrantes />
       <Dobra4FeiraNetworking />

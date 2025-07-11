@@ -1,26 +1,23 @@
 /* --- START OF FILE Dobra3Palestrantes.module.css --- */
-
-/* CONTOX: Dobra3Palestrantes.module.css */
+/* CONTOX: Dobra3Palestrantes.module.css (Redesign V2) */
 
 .dobraSection {
   position: relative;
   width: 100%;
-  min-height: 100vh; /* Altura mínima da viewport */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 80px 40px; /* Padding generoso */
+  padding: 100px 40px;
   overflow: hidden;
-
-  /* NOVA Cor de fundo escura */
   background-color: #0a0010;
-  color: var(--color-white); /* Cor do texto principal */
+  color: var(--color-white);
 
   /* Animação de entrada da seção */
   opacity: 0;
   transform: translateY(50px);
-  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
 }
 
 .dobraSection.isVisible {
@@ -30,183 +27,171 @@
 
 .contentContainer {
   text-align: center;
-  max-width: 1200px; /* Largura máxima para o conteúdo */
+  max-width: 1200px;
   width: 100%;
 }
 
 .sectionTitle {
-  position: relative;
   font-family: var(--font-playfair);
-  font-size: 3.5rem; /* Tamanho de título impactante */
+  font-size: 3.8rem;
   color: var(--color-white);
-  line-height: 1.15;
-  margin-bottom: 1.5em; /* Espaço generoso abaixo do título */
-  padding-top: 1.2em; /* Espaço para a linha decorativa */
+  line-height: 1.1;
+  margin: 0 auto;
 }
 
-/* Linha decorativa abaixo do título, inspirada na BlendSkin */
-.sectionTitle::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%; /* Centraliza a linha */
-  transform: translateX(-50%); /* Ajuste para centralização perfeita */
-  width: 80px; /* Linha um pouco mais longa */
-  height: 3px;
-  background-color: var(--color-hot-pink); /* Pink vibrante */
+.sectionSubtitle {
+  font-family: var(--font-montserrat);
+  font-size: 1.2rem;
+  color: var(--color-light-gray);
+  max-width: 650px;
+  margin: 1.5rem auto 5rem auto; /* top, h-auto, bottom, h-auto */
+  line-height: 1.6;
 }
+
 
 .speakersGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Colunas adaptáveis */
-  gap: 40px; /* Espaço entre os cards */
+  grid-template-columns: repeat(4, 1fr); /* 4 colunas como no exemplo */
+  gap: 60px 40px; /* Mais espaço vertical que horizontal */
   width: 100%;
-  margin-bottom: 40px; /* Espaço antes do texto final */
 }
 
+/* CARD - O contêiner de cada palestrante */
 .speakerCard {
-  background-color: rgba(255, 255, 255, 0.05); /* Fundo sutil transparente */
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra suave para profundidade */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 30px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left; /* Alinhamento do texto à esquerda */
 
-  /* Estado inicial para animação de entrada dos cards */
+  /* Animação de entrada */
   opacity: 0;
-  transform: translateY(30px) scale(0.95);
-  /* A transição real é aplicada via JS com transitionDelay */
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .dobraSection.isVisible .speakerCard {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    /* transition-delay é aplicado via JS */
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.speakerCard:hover {
-  transform: translateY(-5px) scale(1.02); /* Efeito de elevação e leve zoom no hover */
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-}
-
-.speakerImageContainer {
-  width: 150px; /* Tamanho fixo para imagens circulares */
-  height: 150px;
-  border-radius: 50%; /* Imagem circular */
-  overflow: hidden;
+/* CONTAINER DA IMAGEM - Crucial para o efeito de "blob" */
+.imageContainer {
+  position: relative;
+  width: 100%;
+  /* Proporção quadrada para a imagem */
+  padding-top: 100%;
   margin-bottom: 25px;
-  border: 3px solid var(--color-hot-pink); /* Borda pink vibrante */
-  flex-shrink: 0; /* Impede que a imagem encolha */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.1); /* Fundo para imagem */
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.speakerImage {
+.speakerCard:hover .imageContainer {
+    transform: scale(1.05);
+}
+
+/* O "BLOB" - A forma orgânica de fundo */
+.blobBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Garante que a imagem preencha o círculo */
-  transition: transform 0.3s ease;
+  background-color: #1d012e; /* Roxo mais escuro que a cor principal */
+  /* A mágica do clip-path para criar a forma orgânica */
+  clip-path: polygon(0% 15%, 15% 0%, 80% 5%, 100% 30%, 95% 85%, 75% 100%, 20% 95%, 0% 80%);
+  transition: transform 0.4s ease-out;
 }
 
-.speakerImage:hover {
-    transform: scale(1.1); /* Zoom na imagem ao passar o mouse */
+.speakerCard:hover .blobBackground {
+    transform: rotate(-10deg) scale(1.1);
+}
+
+/* IMAGEM DO PALESTRANTE */
+.speakerImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  /* Coloca a imagem acima do blob */
+  z-index: 2;
+}
+
+/* CONTAINER DO TEXTO */
+.textContainer {
+  padding: 0 5px; /* Leve padding para não colar nas bordas */
 }
 
 .speakerName {
   font-family: var(--font-playfair);
-  font-size: 1.8rem; /* Tamanho do nome para destaque */
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-white);
-  line-height: 1.2;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.countryFlag {
+  font-size: 1rem;
+}
+
+.speakerDescription {
+  font-family: var(--font-montserrat);
+  font-size: 0.9rem;
+  color: var(--color-light-gray);
+  line-height: 1.5;
   margin: 0;
 }
 
 .closingText {
   font-family: var(--font-montserrat);
   font-size: 1.2rem;
-  color: var(--color-light-gray); /* Texto cinza claro para suavidade */
-  margin-top: 50px; /* Espaço grande para o texto final */
+  color: var(--color-light-gray);
+  margin-top: 6rem;
 }
-
 
 /* --- Responsividade --- */
 @media (max-width: 1024px) {
-  .sectionTitle {
-    font-size: 3rem;
-  }
   .speakersGrid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Ajuste para telas menores */
-    gap: 30px;
-  }
-  .speakerImageContainer {
-    width: 120px;
-    height: 120px;
-  }
-  .speakerName {
-    font-size: 1.6rem;
-  }
-  .closingText {
-    font-size: 1.1rem;
-    margin-top: 40px;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas em tablets */
   }
 }
 
 @media (max-width: 768px) {
   .dobraSection {
-    padding: 60px 20px; /* Mais padding no mobile */
+    padding: 80px 20px;
   }
   .sectionTitle {
-    font-size: 2.5rem;
-    margin-bottom: 1em;
+    font-size: 3rem;
   }
-  .sectionTitle::before {
-    width: 60px; /* Linha menor no mobile */
-  }
-  .speakersGrid {
-    grid-template-columns: 1fr; /* Uma coluna no mobile */
-    max-width: 300px; /* Limita a largura da coluna única */
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .speakerCard {
-    padding: 25px;
-  }
-  .speakerImageContainer {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 20px;
-  }
-  .speakerName {
-    font-size: 1.4rem;
-  }
-  .closingText {
-    font-size: 1rem;
-    margin-top: 30px;
-  }
-}
-
-@media (max-width: 480px) {
-  .dobraSection {
-    padding: 40px 15px;
-  }
-  .sectionTitle {
-    font-size: 2rem;
+  .sectionSubtitle {
+    margin-bottom: 4rem;
   }
   .speakersGrid {
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas em mobile */
+    gap: 50px 30px;
   }
   .speakerName {
     font-size: 1.3rem;
   }
-  .closingText {
-    font-size: 0.95rem;
-  }
 }
 
-/* --- END OF FILE Dobra3Palestrantes.module.css --- */
+@media (max-width: 480px) {
+  .speakersGrid {
+    grid-template-columns: 1fr; /* 1 coluna em telas bem pequenas */
+    max-width: 280px; /* Limita a largura para não ficar muito grande */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .imageContainer {
+    margin-bottom: 20px;
+  }
+  .textContainer {
+    text-align: center; /* Centraliza o texto na visualização de 1 coluna */
+  }
+  .speakerName {
+    justify-content: center; /* Centraliza o nome e a bandeira */
+  }
+}

@@ -1,0 +1,167 @@
+/* Estilos para o componente DobraPatrocinadores */
+
+/* --- MUDANÇA PRINCIPAL: A SEÇÃO AGORA É A FAIXA BRANCA --- */
+.patrocinadoresSection {
+  /* A seção inteira agora tem fundo branco */
+  background-color: #ffffff;
+  /* Padding vertical para dar espaço ao título e à faixa de logos */
+  padding: 4rem 0;
+  width: 100%;
+  /* Removemos as bordas superior e inferior, já que não há mais fundo roxo */
+}
+
+.sectionTitle {
+  text-align: center;
+  font-family: var(--font-playfair);
+  font-size: 2.8rem;
+  /* A cor do título agora precisa ser escura para contrastar com o branco */
+  color: #2c2c2c;
+  margin-bottom: 3rem;
+  font-weight: 700;
+}
+/* --- FIM DA MUDANÇA PRINCIPAL --- */
+
+.carouselWrapper {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.carouselContainer {
+  display: flex;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carouselContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselTrack {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.logoSlot {
+  flex-shrink: 0;
+  /* A altura define o tamanho da faixa */
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Removemos o fundo branco daqui, pois ele já está na seção */
+}
+
+.logoImage {
+  display: block;
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.logoSlot:hover .logoImage {
+  opacity: 1;
+}
+
+/* --- MUDANÇA PRINCIPAL NO GRADIENTE --- */
+.fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 15%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fadeLeft {
+  left: 0;
+  /* O gradiente agora vai de branco para transparente */
+  background: linear-gradient(to right, #ffffff 20%, transparent);
+}
+
+.fadeRight {
+  right: 0;
+  /* O gradiente agora vai de branco para transparente */
+  background: linear-gradient(to left, #ffffff 20%, transparent);
+}
+/* --- FIM DA MUDANÇA PRINCIPAL NO GRADIENTE --- */
+
+/* Botões de navegação agora precisam ser mais visíveis contra o fundo branco */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  /* Fundo mais escuro para contraste */
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  /* Cor do texto escura */
+  color: #333;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 28px;
+  line-height: 43px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.carouselWrapper:hover .navButton {
+  opacity: 0.5;
+}
+
+.navButton:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.prevButton {
+  left: 20px;
+}
+
+.nextButton {
+  right: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .logoSlot {
+    height: 80px;
+    padding: 0 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+    .patrocinadoresSection {
+        padding: 3rem 0;
+    }
+  .sectionTitle {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+  }
+  .logoSlot {
+    height: 70px;
+    padding: 0 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+    .patrocinadoresSection {
+        padding: 2.5rem 0;
+    }
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  .logoSlot {
+    height: 60px;
+    padding: 0 2rem;
+  }
+  .navButton {
+    display: none;
+  }
+}

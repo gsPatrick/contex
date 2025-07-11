@@ -1,11 +1,15 @@
-import './globals.css';
-// Importe Playfair_Display, remova Great_Vibes
-import { Playfair_Display, Montserrat } from 'next/font/google';
+// --- START OF FILE layout.js ---
 
-// Configura as fontes do Google Fonts para uso no Next.js
+import './globals.css';
+import { Playfair_Display, Montserrat } from 'next/font/google';
+import FixedCtaBar from './components/FixedCtaBar/FixedCtaBar';
+import { HeroVisibilityProvider } from './context/HeroVisibilityContext'; // 1. IMPORTAR O PROVIDER
+
+// ... (configuração das fontes)
+
 const playfair = Playfair_Display({
   subsets: ['latin'],
-  weight: ['400', '700'], // Playfair Display tem esses pesos
+  weight: ['400', '700'],
   variable: '--font-playfair',
   display: 'swap',
 });
@@ -24,11 +28,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" className={`${playfair.variable} ${montserrat.variable}`}>
-      <head>
-        {/* Se quiser os ícones Font Awesome, descomente e adicione o link aqui: */}
-        {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-...seu-hash-aqui..." crossorigin="anonymous" referrerpolicy="no-referrer" /> */}
-      </head>
-      <body>{children}</body>
+      <head>{/* ... */}</head>
+      <body>
+        {/* 2. ENVOLVER TUDO COM O PROVIDER */}
+        <HeroVisibilityProvider>
+          {children}
+          <FixedCtaBar />
+        </HeroVisibilityProvider>
+      </body>
     </html>
   );
 }
