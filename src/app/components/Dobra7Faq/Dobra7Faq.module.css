@@ -1,0 +1,189 @@
+/* --- START OF FILE Dobra7Faq.module.css --- */
+
+/* CONTOX: Dobra7Faq.module.css */
+
+.faqSection {
+    position: relative;
+    width: 100%;
+    min-height: 80vh; /* Altura mínima para o conteúdo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 40px; /* Padding interno */
+    overflow: hidden;
+
+    background-color: #eae4f0; /* NOVA Cor de fundo */
+    color: var(--color-white); /* Texto principal em branco */
+
+    /* Linhas divisórias no topo e na base */
+    border-top: 1px solid rgba(0, 0, 0, 0.1); /* Ajustada para contraste com fundo claro */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Ajustada para contraste com fundo claro */
+
+    /* Animação de entrada da seção */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.faqSection.isVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contentContainer {
+    text-align: center;
+    max-width: 900px; /* Largura máxima para o conteúdo */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sectionTitle {
+    position: relative;
+    font-family: var(--font-playfair);
+    font-size: 3.2rem;
+    color: var(--color-dark-purple); /* Alterado para roxo escuro para contraste no fundo claro */
+    line-height: 1.15;
+    margin-bottom: 2em; /* Espaço maior abaixo do título */
+    padding-top: 1.2em; /* Espaço para a linha decorativa */
+
+    /* Animação de entrada do título */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.faqSection.isVisible .sectionTitle {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s; /* Aparece depois da seção */
+}
+
+/* Linha decorativa abaixo do título */
+.sectionTitle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%; /* Centraliza a linha */
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-hot-pink); /* Pink vibrante (mantido) */
+}
+
+/* --- ACORDEÃO (adaptado da BlendSkin, com cores CONTOX) --- */
+.accordion {
+    width: 100%;
+    max-width: 700px; /* Acordeão ligeiramente mais estreito para legibilidade */
+    border-top: 1px solid rgba(0, 0, 0, 0.1); /* Borda suave */
+}
+
+.accordionItem {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Borda suave */
+}
+
+.accordionHeader {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 25px 0;
+    text-align: left;
+    font-family: var(--font-montserrat);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-dark-purple); /* Alterado para roxo escuro para contraste */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+/* Destaque no título do acordeão aberto */
+.accordionHeader.isOpen {
+    color: var(--color-hot-pink); /* Cor de acento CONTOX (mantido) */
+}
+
+.accordionIcon {
+    font-family: monospace;
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: var(--color-dark-purple); /* Alterado para roxo escuro para contraste */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.accordionIcon::before {
+    content: '›';
+    display: block;
+    transform: rotate(90deg);
+}
+.accordionIcon.isOpen {
+    transform: rotate(180deg);
+    color: var(--color-hot-pink); /* Cor de acento quando aberto (mantido) */
+}
+.accordionIcon.isOpen::before {
+    transform: rotate(90deg);
+}
+
+.accordionContent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+}
+
+.accordionContent.isOpen {
+    max-height: 300px; /* Ajuste se as respostas forem muito longas */
+}
+
+.accordionContentInner {
+    padding: 0 0 25px 0;
+    font-family: var(--font-montserrat);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-dark-purple); /* Alterado para roxo escuro para contraste */
+    text-align: left; /* Garante que o texto da resposta esteja alinhado à esquerda */
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+  .faqSection {
+    min-height: 60vh;
+    padding: 60px 20px;
+  }
+  .sectionTitle {
+    font-size: 2.5rem;
+    margin-bottom: 1.5em;
+  }
+  .accordion {
+      max-width: 100%; /* Ocupa a largura total no mobile */
+  }
+  .accordionHeader {
+      font-size: 1rem;
+      padding: 20px 0;
+  }
+  .accordionContentInner {
+      font-size: 0.95rem;
+      padding: 0 0 20px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .faqSection {
+    padding: 40px 15px;
+  }
+  .sectionTitle {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+  .accordionHeader {
+      font-size: 0.95rem;
+      padding: 18px 0;
+  }
+  .accordionContentInner {
+      font-size: 0.9rem;
+      padding: 0 0 18px 0;
+  }
+}
+
+/* --- END OF FILE Dobra7Faq.module.css --- */

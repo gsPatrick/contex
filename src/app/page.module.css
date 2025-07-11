@@ -1,3 +1,11 @@
+/*
+  Este arquivo page.module.css parece ser um remanescente de um template Next.js padrão.
+  Ele não está sendo ativamente usado pelos componentes fornecidos (Hero, Dobra2Beneficios),
+  que importam seus próprios arquivos de módulo CSS.
+  Portanto, não há alterações a serem feitas aqui para o propósito desta tarefa,
+  pois os estilos de página estão sendo definidos globalmente em globals.css ou por componentes.
+*/
+
 .page {
   --gray-rgb: 0, 0, 0;
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
@@ -13,7 +21,7 @@
   min-height: 100svh;
   padding: 80px;
   gap: 64px;
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-geist-sans); /* Esta variável de fonte não está definida no layout.js */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,7 +43,7 @@
 }
 
 .main ol {
-  font-family: var(--font-geist-mono);
+  font-family: var(--font-geist-mono); /* Esta variável de fonte não está definida no layout.js */
   padding-left: 0;
   margin: 0;
   font-size: 14px;
@@ -82,8 +90,8 @@
 }
 
 a.primary {
-  background: var(--foreground);
-  color: var(--background);
+  background: var(--foreground); /* Variável não definida */
+  color: var(--background); /* Variável não definida */
   gap: 8px;
 }
 

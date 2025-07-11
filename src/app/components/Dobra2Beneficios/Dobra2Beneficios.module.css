@@ -1,0 +1,290 @@
+/* --- START OF FILE Dobra2Beneficios.module.css --- */
+
+/* CONTOX: Dobra2Beneficios.module.css */
+
+.benefitsSection {
+  display: flex;
+  flex-direction: row; /* Padrão desktop: colunas lado a lado */
+  min-height: 100vh; /* Altura mínima da viewport */
+  height: 100vh; /* Altura fixa para layout 50/50 consistente no desktop */
+  overflow: hidden;
+  position: relative;
+
+  /* Animação de entrada inspirada na BlendSkin */
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.benefitsSection.isVisible { /* Renomeado de .inView para .isVisible */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Coluna do Vídeo (Esquerda) --- */
+.videoColumn {
+  flex: 0 0 50%; /* Ocupa 50% da largura da seção */
+  height: 100%; /* Ocupa 100% da altura da seção */
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-dark-purple); /* Cor de fallback/fundo: Roxo Escuro */
+
+  /* Animação de entrada inspirada na BlendSkin */
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.benefitsSection.isVisible .videoColumn {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.videoElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Garante que o vídeo preencha o container sem distorção */
+  display: block;
+}
+
+/* REMOVIDO: .videoOverlay para replicar o estilo 50/50 da BlendSkin sem overlay */
+
+
+/* --- Coluna do Conteúdo (Direita) --- */
+.contentColumn {
+  flex: 0 0 50%; /* Ocupa 50% da largura da seção */
+  height: 100%; /* Ocupa 100% da altura da seção */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 100px; /* Padding generoso como na BlendSkin */
+  overflow-y: auto; /* Permite scroll se o conteúdo exceder a altura */
+
+  background-color: #2f014a; /* ALTERADO: NOVA cor de fundo */
+  color: var(--color-white); /* Cor de texto: Branco */
+
+  /* Animação de entrada inspirada na BlendSkin, com um pequeno atraso */
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.2s, transform 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.2s;
+}
+
+.benefitsSection.isVisible .contentColumn {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sectionTitle {
+  position: relative; /* Para a linha decorativa */
+  font-family: var(--font-playfair); /* Fonte de título CONTOX */
+  font-size: 3.2rem; /* Tamanho ajustado para impacto como na BlendSkin */
+  color: var(--color-white); /* Título em Branco */
+  line-height: 1.15;
+  margin-bottom: 0.7em; /* Espaço abaixo do título */
+  padding-top: 1.2em; /* Espaço acima para a linha decorativa */
+}
+
+/* --- LINHA DECORATIVA (inspirada na BlendSkin) --- */
+.sectionTitle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-hot-pink); /* Cor de acento da paleta CONTOX */
+}
+
+/* Estilo da descrição, copiado da Dobra 4 */
+.sectionDescription {
+    font-family: var(--font-montserrat);
+    font-size: 1.1rem;
+    color: var(--color-light-gray); /* Um branco mais suave para a descrição, mantendo a legibilidade monocromática */
+    line-height: 1.6;
+    margin-bottom: 3em;
+    max-width: 550px;
+}
+
+/* Estilos do acordeão, copiados da Dobra 4 */
+.accordion {
+    width: 100%;
+    max-width: 550px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Borda suave em branco/transparente */
+}
+
+.accordionItem {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.accordionHeader {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 25px 0;
+    text-align: left;
+    font-family: var(--font-montserrat);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-white); /* Cabeçalho em branco */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+/* Destaque no título do acordeão aberto */
+.accordionHeader.isOpen {
+    color: var(--color-hot-pink); /* Cor de acento CONTOX */
+}
+
+.accordionIcon {
+    font-family: monospace;
+    font-size: 1.5rem;
+    font-weight: normal;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.accordionIcon::before {
+    content: '›';
+    display: block;
+    transform: rotate(90deg);
+}
+.accordionIcon.isOpen {
+    transform: rotate(180deg);
+}
+.accordionIcon.isOpen::before {
+    transform: rotate(90deg);
+}
+
+.accordionContent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+}
+
+.accordionContent.isOpen {
+    max-height: 200px; /* Ajuste se o conteúdo for maior */
+}
+
+.accordionContentInner {
+    padding: 0 0 25px 0;
+    font-family: var(--font-montserrat);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-light-gray); /* Conteúdo do acordeão em branco suave */
+}
+
+/* Link de Ação, copiado da Dobra 4 */
+.finalCtaLink {
+    font-family: var(--font-montserrat);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-top: 2.5em;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.finalCtaLink:hover {
+    color: var(--color-hot-pink); /* Cor de acento CONTOX */
+    text-decoration: underline;
+}
+
+.finalCtaLink span {
+    margin-left: 0.5em;
+    transition: transform 0.3s ease;
+}
+
+.finalCtaLink:hover span {
+    transform: translateX(5px);
+}
+
+
+/* --- Responsividade --- */
+@media (max-width: 900px) { /* Breakpoint ajustado para 900px como na BlendSkin */
+  .benefitsSection {
+    flex-direction: column; /* Empilha as colunas */
+    height: auto; /* Altura se ajusta ao conteúdo */
+    min-height: 100vh;
+  }
+
+  .videoColumn {
+    flex: 1;
+    width: 100%;
+    height: 60vh; /* Altura fixa para o vídeo no mobile, como na BlendSkin */
+    order: 1; /* Vídeo no topo */
+  }
+
+  .benefitsSection.isVisible .videoColumn {
+    opacity: 1;
+    transform: translateX(0); /* Garante reset se houver transform anterior */
+  }
+
+  .contentColumn {
+    flex: 1;
+    width: 100%;
+    padding: 60px 20px; /* Padding reduzido para mobile */
+    order: 2; /* Conteúdo abaixo do vídeo */
+    text-align: center; /* Centraliza o texto */
+    align-items: center; /* Centraliza os elementos de conteúdo */
+  }
+
+  .benefitsSection.isVisible .contentColumn {
+    opacity: 1;
+    transform: translateX(0); /* Garante reset */
+  }
+
+  /* Centraliza a linha decorativa no mobile */
+  .sectionTitle::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .sectionTitle {
+      font-size: 2.5rem; /* Tamanho de fonte ajustado para mobile */
+      padding-top: 1.5em;
+  }
+  /* Ajustes responsivos para a descrição, acordeão e CTA */
+  .sectionDescription {
+      font-size: 1rem;
+      max-width: 100%; /* Permite que ocupe toda a largura disponível */
+  }
+  .accordion {
+      max-width: 100%;
+  }
+  .accordionHeader {
+      font-size: 1rem;
+      padding: 20px 0;
+  }
+  .accordionContentInner {
+      font-size: 0.95rem;
+      padding: 0 0 20px 0;
+      text-align: center; /* Centraliza o texto do conteúdo do acordeão no mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  .contentColumn {
+    padding: 40px 15px; /* Padding ainda mais apertado para telas muito pequenas */
+  }
+  /* Ajustes responsivos para mobile pequeno */
+  .sectionDescription {
+      font-size: 0.95rem;
+  }
+  .accordionHeader {
+      font-size: 0.95rem;
+      padding: 18px 0;
+  }
+  .accordionContentInner {
+      font-size: 0.9rem;
+      padding: 0 0 18px 0;
+  }
+  .finalCtaLink {
+        font-size: 0.95rem;
+  }
+}
+
+/* --- END OF FILE Dobra2Beneficios.module.css --- */

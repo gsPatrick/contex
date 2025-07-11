@@ -1,0 +1,339 @@
+/* --- START OF FILE Hero.module.css --- */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Alinha o conteúdo no topo */
+  overflow: hidden;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  filter: blur(6px) brightness(0.4);
+  transition: transform var(--transition-speed-slow) var(--transition-ease);
+}
+
+.heroBackground::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-dark-purple);
+  opacity: 0.8;
+  z-index: 2;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Use flex-start para a barra superior, e flex-grow no textContent */
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1000px;
+  height: 100%; /* Faz o heroContent ocupar 100% da altura do Hero */
+  padding: 0 1.5rem;
+  /* Adiciona espaço no topo do heroContent para garantir a barra superior */
+  padding-top: 40px; /* Ajustado */
+
+  animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- Top Bar --- */
+.topBar {
+  width: 100%;
+  padding-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* Removido margin-bottom, o espaçamento agora é controlado pelo flex-grow do textContent */
+  /* margin-bottom: 2rem; */
+  opacity: 0;
+  animation: slideUpFadeIn 1s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+.topBarLogo {
+  font-family: var(--font-montserrat);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.topBarInfo {
+  font-family: var(--font-montserrat);
+  font-size: 0.9rem;
+  color: var(--color-light-gray);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* --- Conteúdo de Texto Central (Principal) --- */
+.textContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centraliza verticalmente dentro do espaço restante */
+  justify-content: center;
+  /* Permite que o textContent ocupe todo o espaço vertical disponível entre topBar e a base de heroContent */
+  flex-grow: 1;
+  max-width: 900px;
+  width: 100%; /* Garante que ocupe a largura disponível */
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFadeIn 1s ease-out forwards;
+  animation-delay: 1s;
+}
+
+.heroTitle {
+  font-family: var(--font-playfair);
+  font-size: 4.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--color-white);
+}
+
+.heroSubtitle {
+  font-family: var(--font-montserrat);
+  font-size: 1.4rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem; /* Espaço entre o subtítulo e o cronômetro */
+  color: var(--color-light-gray);
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Cronômetro --- */
+.countdownTimer {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem; /* Espaçamento entre os itens (dias, horas, etc.) */
+  /* Ajustado: Aumentei a margem superior e mantive a inferior */
+  margin-top: 3.5rem; /* Era 3rem, agora 3.5rem */
+  margin-bottom: 3.5rem; /* Mantido 3.5rem */
+  padding: 1.5rem 2rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFadeIn 1s ease-out forwards;
+  animation-delay: 1.5s;
+}
+
+.countdownItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-white);
+  line-height: 1.2;
+}
+
+.countdownValue {
+  font-family: var(--font-playfair);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--color-hot-pink);
+  margin-bottom: 0.2rem;
+  text-shadow: 0 0 10px rgba(255, 30, 146, 0.4);
+}
+
+.countdownLabel {
+  font-family: var(--font-montserrat);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-light-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.eventStatusMessage {
+  font-family: var(--font-montserrat);
+  font-size: 1.8rem;
+  color: var(--color-hot-pink);
+  margin-top: 3.5rem; /* Ajustado: Aumentei para coincidir com countdownTimer */
+  margin-bottom: 3.5rem; /* Ajustado: Aumentei para coincidir com countdownTimer */
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(255, 30, 146, 0.4);
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 1.5s;
+}
+
+/* --- Botão CTA --- */
+.ctaButton {
+  /* Estilos do botão são herdados do globals.css via a classe cta-ingresso */
+  /* Ajustei a margem superior para dar mais espaço do cronômetro/mensagem */
+  margin-top: 0rem; /* A margem já está no elemento acima, este pode ser 0 ou pequeno */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFadeIn 1s ease-out forwards;
+  animation-delay: 2s; /* Aumentei o atraso para aparecer depois do cronômetro */
+}
+
+
+/* Animação de entrada para textos e botão (stagger effect) */
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsividade --- */
+@media (min-width: 1024px) {
+  .hero {
+    padding: 0;
+  }
+
+  .heroContent {
+    padding: 40px 3rem 0; /* Ajustado padding-top */
+    justify-content: flex-start; /* Mantém topBar no topo */
+  }
+
+  .topBar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 1.5rem;
+    margin-bottom: 0; /* Removido margin-bottom, espaçamento pelo flex-grow */
+  }
+
+  .topBarLogo {
+    margin-bottom: 0;
+    font-size: 2rem;
+  }
+
+  .topBarInfo {
+    font-size: 1rem;
+  }
+
+  .heroTitle {
+    font-size: 5.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.5rem;
+  }
+  /* Remove padding-top/bottom do textContent para centralizar seu conteúdo dentro dele */
+  .textContent {
+      padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroContent {
+      padding-top: 30px; /* Ajuste padding-top para mobile */
+  }
+  .heroTitle {
+    font-size: 3.5rem;
+  }
+  .heroSubtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem; /* Ajuste */
+  }
+  .topBarInfo {
+    font-size: 0.8rem;
+  }
+  .countdownTimer {
+    flex-wrap: wrap;
+    gap: 1.5rem 1rem;
+    padding: 1rem;
+    /* Ajustado: Aumentei margens para mobile */
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+   .eventStatusMessage {
+    /* Ajustado: Aumentei margens para mobile */
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 1.4rem;
+  }
+  .countdownItem {
+      flex: 1 1 45%;
+  }
+  .countdownValue {
+    font-size: 2.5rem;
+  }
+  .countdownLabel {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+    .heroContent {
+      padding-top: 20px; /* Ajuste padding-top para mobile pequeno */
+    }
+  .heroTitle {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .heroSubtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem; /* Ajuste */
+  }
+  .topBarLogo {
+    font-size: 1.5rem;
+  }
+  .topBarInfo {
+    font-size: 0.7rem;
+    text-align: center;
+  }
+  .countdownTimer {
+    gap: 0.8rem 0.5rem;
+    padding: 0.8rem;
+    /* Ajustado: Aumentei margens para mobile pequeno */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+    .eventStatusMessage {
+    /* Ajustado: Aumentei margens para mobile pequeno */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+  }
+  .countdownValue {
+    font-size: 2rem;
+  }
+  .countdownLabel {
+    font-size: 0.7rem;
+  }
+  /* Botão CTA, estilos base em globals.css, apenas padding/font-size para mobile se necessário */
+}
+
+/* --- END OF FILE Hero.module.css --- */

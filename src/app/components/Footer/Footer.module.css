@@ -1,0 +1,351 @@
+/* --- START OF FILE Footer.module.css --- */
+
+/* CONTOX: Footer.module.css */
+
+.footerSection {
+  position: relative;
+  width: 100%;
+  min-height: auto; /* Altura automática */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 30px; /* REDUZIDO significativamente o padding */
+  overflow: hidden;
+
+  background-color: #0a0010; /* NOVA cor de fundo */
+  color: var(--color-white); /* Cor de texto padrão */
+
+  /* Animação de entrada */
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.footerSection.isVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contentContainer {
+  text-align: center;
+  max-width: 900px; /* Largura máxima para o conteúdo */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Bloco Superior --- */
+.createdBy {
+  font-family: var(--font-montserrat);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-light-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem; /* REDUZIDO */
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.footerSection.isVisible .createdBy {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.logoContainer {
+  margin-bottom: 1.5rem; /* REDUZIDO */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.footerSection.isVisible .logoContainer {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+}
+
+.facialAcademyLogo {
+  width: 180px; /* Ligeiramente reduzido */
+  height: auto;
+  filter: brightness(1.2);
+}
+
+.mainHeadline {
+  font-family: var(--font-playfair);
+  font-size: 1.7rem; /* Ligeiramente reduzido */
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.3;
+  margin-bottom: 0.3em; /* REDUZIDO */
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.footerSection.isVisible .mainHeadline {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+.statistic {
+  font-family: var(--font-montserrat);
+  font-size: 1rem; /* Ligeiramente reduzido */
+  color: var(--color-white);
+  margin-bottom: 1.5em; /* REDUZIDO */
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.footerSection.isVisible .statistic {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+/* --- Bloco de Contato --- */
+.contactBlock {
+  margin-bottom: 2rem; /* REDUZIDO */
+  max-width: 600px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.footerSection.isVisible .contactBlock {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+}
+
+.contactText {
+  font-family: var(--font-montserrat);
+  font-size: 0.95rem; /* Ligeiramente reduzido */
+  color: var(--color-white);
+  line-height: 1.4; /* Ligeiramente reduzido */
+  margin-bottom: 0.3em; /* REDUZIDO */
+}
+
+.emailLink {
+  color: var(--color-white);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+.emailLink:hover {
+  color: var(--color-hot-pink); /* Assumindo que --color-hot-pink existe */
+}
+
+/* --- Linha Divisória --- */
+.divider {
+  width: 100%;
+  max-width: 600px;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 2rem 0; /* REDUZIDO */
+
+  opacity: 0;
+  transform: scaleX(0.5);
+  transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.footerSection.isVisible .divider {
+    opacity: 1;
+    transform: scaleX(1);
+    transition-delay: 0.7s;
+}
+
+
+/* --- Aviso Legal --- */
+.legalNotice {
+  margin-bottom: 2rem; /* REDUZIDO */
+  max-width: 800px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.footerSection.isVisible .legalNotice {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.8s;
+}
+
+.legalTitle {
+  font-family: var(--font-montserrat);
+  font-size: 1rem; /* Ligeiramente reduzido */
+  font-weight: 700;
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin-bottom: 0.6em; /* REDUZIDO */
+}
+
+.legalText {
+  font-family: var(--font-montserrat);
+  font-size: 0.85rem; /* Ligeiramente reduzido */
+  color: var(--color-light-gray); /* Assumindo que --color-light-gray existe */
+  line-height: 1.6; /* Ligeiramente reduzido */
+}
+
+/* --- Informações da Equipe --- */
+.teamInfo {
+  margin-bottom: 2rem; /* REDUZIDO */
+  max-width: 600px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.footerSection.isVisible .teamInfo {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.9s;
+}
+
+.teamTitle {
+  font-family: var(--font-montserrat);
+  font-size: 0.95rem; /* Ligeiramente reduzido */
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 0.5em; /* REDUZIDO */
+}
+
+.teamMember {
+  font-family: var(--font-montserrat);
+  font-size: 0.9rem; /* Ligeiramente reduzido */
+  color: var(--color-white);
+  line-height: 1.4; /* Ligeiramente reduzido */
+}
+
+/* --- Termos e Condições Finais --- */
+.termsText {
+  font-family: var(--font-montserrat);
+  font-size: 0.8rem; /* Ligeiramente reduzido */
+  color: var(--color-light-gray); /* Assumindo que --color-light-gray existe */
+  line-height: 1.6; /* Ligeiramente reduzido */
+  max-width: 700px;
+  margin-top: 2rem; /* REDUZIDO */
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.footerSection.isVisible .termsText {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.0s;
+}
+
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+  .footerSection {
+    padding: 30px 20px; /* Ajustado */
+  }
+  .createdBy {
+    font-size: 0.75rem;
+    margin-bottom: 0.6rem; /* Ajustado */
+  }
+  .facialAcademyLogo {
+    width: 150px; /* Ajustado */
+  }
+  .mainHeadline {
+    font-size: 1.4rem; /* Ajustado */
+  }
+  .statistic {
+    font-size: 0.9rem; /* Ajustado */
+    margin-bottom: 1.2em; /* Ajustado */
+  }
+  .contactBlock {
+    max-width: 100%;
+    margin-bottom: 1.8rem; /* Ajustado */
+  }
+  .contactText {
+    font-size: 0.85rem; /* Ajustado */
+    margin-bottom: 0.2em; /* Ajustado */
+    line-height: 1.3; /* Ajustado */
+  }
+  .divider {
+    max-width: 90%;
+    margin: 1.8rem 0; /* Ajustado */
+  }
+  .legalNotice {
+    max-width: 100%;
+    margin-bottom: 1.8rem; /* Ajustado */
+  }
+  .legalTitle {
+    font-size: 0.9rem; /* Ajustado */
+    margin-bottom: 0.5em; /* Ajustado */
+  }
+  .legalText {
+    font-size: 0.8rem; /* Ajustado */
+    line-height: 1.5; /* Ajustado */
+  }
+  .teamInfo {
+    max-width: 100%;
+    margin-bottom: 1.8rem; /* Ajustado */
+  }
+  .teamTitle {
+    font-size: 0.9rem; /* Ajustado */
+    margin-bottom: 0.4em; /* Ajustado */
+  }
+  .teamMember {
+    font-size: 0.85rem; /* Ajustado */
+    line-height: 1.3; /* Ajustado */
+  }
+  .termsText {
+    font-size: 0.75rem; /* Ajustado */
+    max-width: 90%;
+    margin-top: 1.8rem; /* Ajustado */
+    line-height: 1.5; /* Ajustado */
+  }
+}
+
+@media (max-width: 480px) {
+  .footerSection {
+    padding: 25px 15px; /* Ajustado */
+  }
+  .facialAcademyLogo {
+    width: 120px; /* Ajustado */
+  }
+  .mainHeadline {
+    font-size: 1.2rem; /* Ajustado */
+  }
+  .statistic {
+    font-size: 0.85rem; /* Ajustado */
+    margin-bottom: 0.8em; /* Ajustado */
+  }
+  .contactBlock {
+      margin-bottom: 1.5rem; /* Ajustado */
+  }
+  .contactText {
+    font-size: 0.8rem; /* Ajustado */
+  }
+  .divider {
+      margin: 1.5rem 0; /* Ajustado */
+  }
+  .legalNotice {
+      margin-bottom: 1.5rem; /* Ajustado */
+  }
+  .legalTitle {
+    font-size: 0.85rem; /* Ajustado */
+  }
+  .legalText {
+    font-size: 0.7rem; /* Ajustado */
+  }
+    .teamInfo {
+      margin-bottom: 1.5rem; /* Ajustado */
+    }
+  .teamTitle {
+    font-size: 0.8rem; /* Ajustado */
+  }
+  .teamMember {
+    font-size: 0.75rem; /* Ajustado */
+  }
+  .termsText {
+    font-size: 0.7rem; /* Ajustado */
+    margin-top: 1.5rem; /* Ajustado */
+  }
+}
+
+/* --- END OF FILE Footer.module.css --- */
