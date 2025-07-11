@@ -8,6 +8,7 @@ import Dobra5LotesUrgecia from './components/Dobra5LotesUrgecia/Dobra5LotesUrgec
 import Dobra6CtaFinal from './components/Dobra6CtaFinal/Dobra6CtaFinal';
 import Dobra7Faq from './components/Dobra7Faq/Dobra7Faq'; // Importa a nova dobra
 import Footer from './components/Footer/Footer';
+import DobraLotesPreview from './components/DobraLotesPreview/DobraLotesPreview'; // <-- IMPORTE O NOVO COMPONENTE
 
 export default function Home() {
   return (
@@ -18,6 +19,8 @@ export default function Home() {
       <Dobra3Palestrantes />
       <Dobra4FeiraNetworking />
       <Dobra5LotesUrgecia />
+            <DobraLotesPreview /> {/* <-- ADICIONE O NOVO COMPONENTE AQUI */}
+
       <Dobra6CtaFinal />
       <Dobra7Faq /> {/* Adiciona a nova dobra aqui */}
       < Footer />

@@ -1,0 +1,227 @@
+/* CONTOX: Dobra5LotesUrgencia.module.css - Réplica Fiel com Cores do Sistema */
+
+.dobraSection {
+  /* COR ATUALIZADA: Usando o fundo padrão do projeto */
+  background-color: #0a0010;
+  color: var(--color-white);
+  padding: 100px 60px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.dobraSection.isVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+/* --- Coluna da Esquerda --- */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  margin-bottom: 50px;
+}
+
+.title {
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 700;
+  font-size: 5rem;
+  line-height: 1.05;
+  margin: 0;
+  color: var(--color-white);
+}
+
+.urgencyBar {
+  display: inline-block;
+  background-color: #facc15; /* MANTIDO: Amarelo para urgência */
+  color: #1f2937;
+  padding: 12px 24px;
+  border-radius: 8px;
+  margin-top: 24px;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.benefitsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.benefitItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  /* COR ATUALIZADA: Borda com o rosa do tema */
+  border-bottom: 1px solid rgba(255, 30, 146, 0.2);
+}
+
+.benefitItem:last-child {
+  border-bottom: none;
+}
+
+.benefitText {
+  flex-grow: 1;
+}
+
+.benefitTitle {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.benefitDescription {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 1rem;
+  /* COR ATUALIZADA: Cinza claro padrão do tema */
+  color: var(--color-light-gray);
+  line-height: 1.5;
+  margin-top: 8px;
+  max-width: 500px;
+}
+
+.checkIcon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  margin-left: 20px;
+}
+
+/* --- Coluna da Direita --- */
+.rightColumn {
+  position: sticky;
+  top: 100px;
+}
+
+.pricingCard {
+  /* COR ATUALIZADA: Roxo mais escuro do tema */
+  background-color: #1d012e;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+
+.cardHeader {
+  /* COR ATUALIZADA: Rosa vibrante do tema */
+  background-color: var(--color-hot-pink);
+  padding: 24px 30px;
+}
+
+.cardHeader h3 {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 0;
+  text-align: center;
+}
+
+.cardBody {
+  padding: 30px;
+  text-align: center;
+}
+
+.priceInfo {
+  margin-bottom: 30px;
+}
+
+.noInterest, .installments {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 1rem;
+  color: #eab308; /* MANTIDO: Amarelo para destacar info de compra */
+  font-weight: 500;
+}
+
+.oldPrice {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 1.25rem;
+  color: #9ca3af; /* Cinza padrão para preço riscado */
+  text-decoration: line-through;
+  margin: 8px 0;
+}
+
+.currentPrice {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--color-white);
+  margin: 0;
+  line-height: 1;
+}
+
+.installments {
+  color: var(--color-light-gray);
+  margin-top: 8px;
+}
+
+.buyButton {
+  display: inline-block;
+  width: 100%;
+  background-color: var(--color-white);
+  color: #111827;
+  padding: 20px;
+  border-radius: 9999px;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.buyButton:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+.footerNote {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.9rem;
+  color: var(--color-light-gray);
+  text-align: left;
+}
+
+
+/* --- Responsividade --- */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .rightColumn {
+    position: static;
+  }
+  .pricingCard {
+    max-width: 450px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .dobraSection {
+    padding: 80px 20px;
+  }
+  .title {
+    font-size: 3.5rem;
+  }
+  .benefitTitle {
+    font-size: 1.2rem;
+  }
+}
