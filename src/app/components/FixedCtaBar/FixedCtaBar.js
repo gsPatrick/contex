@@ -87,7 +87,7 @@ export default function FixedCtaBar() {
         </div>
         
         <a 
-          href="https://link-de-vendas-contox.com.br" 
+          href="https://www.sympla.com.br/evento/contox-goiania-2025/2609704" 
           target="_blank" 
           rel="noopener noreferrer" 
           className={styles.ctaButton}

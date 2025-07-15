@@ -9,7 +9,7 @@ export default function Hero() {
   const bgRef = useRef(null);
   const { setIsHeroVisible } = useHeroVisibility();
 
-  // --- DATA ATUALIZADA PARA 15 DE AGOSTO DE 2025 ---
+  // Data do evento: 15 de Agosto de 2025
   const eventDate = new Date('2025-08-15T00:00:00').getTime();
 
   const calculateTimeLeft = () => {
@@ -17,7 +17,6 @@ export default function Hero() {
     const now = new Date();
     const target = new Date(eventDate);
 
-    // Se ainda há tempo
     if (difference > 0) {
       return {
         dias: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -27,8 +26,6 @@ export default function Hero() {
         status: 'counting',
       };
     }
-
-    // Se a diferença é negativa, checar se é o mesmo dia
     if (
         now.getFullYear() === target.getFullYear() &&
         now.getMonth() === target.getMonth() &&
@@ -36,8 +33,6 @@ export default function Hero() {
     ) {
         return { dias: 0, horas: 0, minutos: 0, segundos: 0, status: 'today' };
     }
-
-    // Se já passou o dia do evento
     return { dias: 0, horas: 0, minutos: 0, segundos: 0, status: 'expired' };
   };
 
@@ -76,7 +71,6 @@ export default function Hero() {
     };
   }, [setIsHeroVisible]);
 
-  // Prepara os componentes do timer para renderização
   const renderTimer = () => {
     return ['dias', 'horas', 'minutos', 'segundos'].map((interval) => (
       <div key={interval} className={styles.countdownItem}>
@@ -94,27 +88,34 @@ export default function Hero() {
       <div className={styles.heroBackground} ref={bgRef}></div>
 
       <div className={styles.heroContent}>
+        {/* Top Bar */}
         <div className={styles.topBar}>
-          <h2 className={styles.topBarLogo}>CONTOX Conf.</h2>
-          {/* Você pode querer atualizar a data aqui também se for o caso */}
+          {/* --- ALTERAÇÃO 1: Troca do h2 pela imagem da logo --- */}
+          <img 
+            src="/images/logo.png" 
+            alt="CONTOX Logo" 
+            className={styles.topBarLogo} 
+          />
           <span className={styles.topBarInfo}>15, 16 e 17 DE AGOSTO DE 2025 | CENTRO DE CONVENÇÕES DE GOIÂNIA</span>
         </div>
 
+        {/* Conteúdo de Texto Central */}
         <div className={styles.textContent}>
+          {/* --- ALTERAÇÃO 2: Novo texto da headline --- */}
           <h1 className={styles.heroTitle}>
-            O Maior Evento de Harmonização Facial e Estética Avançada do Centro-Oeste!
+            O Congresso de Harmonização Facial e Corporal Mais Tradicional da América Latina
           </h1>
           <p className={styles.heroSubtitle}>
             Três dias intensivos com os maiores nomes nacionais e internacionais da Harmonização. Networking premium,
             técnicas inovadoras e tendências exclusivas que vão transformar seu negócio e sua carreira.
           </p>
 
+          {/* Cronômetro ou Mensagem de Evento Iniciado */}
           {timeLeft.status === 'counting' && (
             <div className={styles.countdownTimer}>
               {renderTimer()}
             </div>
           )}
-
           {timeLeft.status === 'today' && (
             <>
               <p className={styles.eventStatusMessage}>O evento é hoje! Ainda dá tempo de garantir sua vaga!</p>
@@ -123,13 +124,13 @@ export default function Hero() {
               </div>
             </>
           )}
-
           {timeLeft.status === 'expired' && (
              <p className={styles.eventStatusMessage}>O evento já foi encerrado. Nos vemos na próxima edição!</p>
           )}
 
+          {/* Botão CTA */}
           {timeLeft.status !== 'expired' && (
-            <a href="https://link-de-vendas-contox.com.br" target="_blank" className={`${styles.ctaButton} cta-ingresso animated-glow`}>
+            <a href="https://www.sympla.com.br/evento/contox-goiania-2025/2609704" target="_blank" className={`${styles.ctaButton} cta-ingresso animated-glow`}>
               GARANTIR MEU INGRESSO AGORA
             </a>
           )}

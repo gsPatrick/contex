@@ -8,7 +8,7 @@ import styles from './Dobra4FeiraNetworking.module.css';
 export default function Dobra4FeiraNetworking() {
     const [openAccordion, setOpenAccordion] = useState(0); // Abrir o primeiro item por padrão
     const sectionRef = useRef(null);
-    const [isVisible, setIsVisible] = useState(false); // Adicionado estado para controlar visibilidade
+    const [isVisible, setIsVisible] = useState(false);
 
     const handleAccordionClick = (index) => {
         setOpenAccordion(openAccordion === index ? null : index);
@@ -19,7 +19,7 @@ export default function Dobra4FeiraNetworking() {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        setIsVisible(true); // Atualiza o estado
+                        setIsVisible(true);
                         observer.unobserve(entry.target);
                     }
                 });
@@ -58,7 +58,6 @@ export default function Dobra4FeiraNetworking() {
 
     const finalCtaText = "Transforme seu conhecimento em resultados reais. Garanta seu ingresso!";
     const finalCtaLink = "https://www.sympla.com.br/evento/contox-goiania-2025/2609704";
-
     const imageSrc = "/images/contox-event-details-main.jpg";
 
     return (
@@ -86,22 +85,20 @@ export default function Dobra4FeiraNetworking() {
                         </div>
                     ))}
                 </div>
-                <a href={finalCtaLink} target="_blank" rel="noopener noreferrer" className={styles.finalCtaLink}>
+                {/* --- ELEMENTO ALTERADO PARA UM BOTÃO --- */}
+                <a href={finalCtaLink} target="_blank" rel="noopener noreferrer" className={styles.finalCtaButton}>
                     {finalCtaText}
-                    <span>→</span>
                 </a>
             </div>
 
             {/* Lado Direito: Imagem */}
             <div className={styles.mediaSide}>
-                {/* IMAGEM DE FUNDO DESFOCADA */}
                 <img
                     aria-hidden="true"
                     src={imageSrc}
                     className={styles.mediaBackground}
                     loading="lazy"
                 />
-                {/* IMAGEM PRINCIPAL */}
                 <img
                     src={imageSrc}
                     alt="Feira Comercial e Networking no CONTOX Goiânia"
@@ -112,4 +109,3 @@ export default function Dobra4FeiraNetworking() {
         </section>
     );
 }
-// --- END OF FILE Dobra4FeiraNetworking.js ---

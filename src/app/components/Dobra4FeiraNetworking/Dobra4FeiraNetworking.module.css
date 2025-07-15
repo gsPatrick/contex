@@ -3,7 +3,6 @@
 
 .dobraSection {
   width: 100%;
-  /* ALTERADO: De height para min-height */
   min-height: 100vh;
   display: flex;
   flex-direction: row;
@@ -21,7 +20,6 @@
 /* --- Lado do Conteúdo (Esquerda) --- */
 .textSide {
   flex: 0 0 50%;
-  /* REMOVIDO: height: 100% e overflow-y: auto; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,7 +39,6 @@
 /* --- Lado da Mídia (Direita) --- */
 .mediaSide {
   flex: 0 0 50%;
-  /* MUDANÇA: Usamos position sticky para a imagem acompanhar o scroll */
   position: sticky;
   top: 0;
   height: 100vh;
@@ -184,29 +181,30 @@
   color: var(--color-light-gray);
 }
 
-.finalCtaLink {
-  font-family: var(--font-montserrat);
-  font-size: 1rem;
-  font-weight: 700;
+/* --- ESTILO ALTERADO: De link para botão --- */
+.finalCtaButton {
+  display: inline-block;
+  background-color: var(--color-hot-pink);
   color: var(--color-white);
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: center;
+  text-decoration: none;
+  padding: 18px 40px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
   margin-top: 2.5em;
-  display: inline-flex;
-  align-items: center;
-  transition: color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 30, 146, 0.3);
 }
 
-.finalCtaLink:hover {
-  color: var(--color-hot-pink);
-  text-decoration: underline;
-}
-
-.finalCtaLink span {
-  margin-left: 0.5em;
-  transition: transform 0.3s ease;
-}
-
-.finalCtaLink:hover span {
-  transform: translateX(5px);
+.finalCtaButton:hover {
+  transform: translateY(-3px);
+  background-color: #ff33a1; /* Um rosa um pouco mais claro no hover */
+  box-shadow: 0 8px 25px rgba(255, 30, 146, 0.4);
+    color: black;
 }
 
 /* --- Responsividade --- */
@@ -225,7 +223,6 @@
   }
 
   .mediaSide {
-    /* No mobile, o sticky não é mais necessário */
     position: relative;
     top: auto;
     order: 2; /* Imagem abaixo */
@@ -264,8 +261,11 @@
   .accordionContentInner {
     font-size: 0.9rem;
   }
-
-  .finalCtaLink {
-    font-size: 0.95rem;
+  
+  .finalCtaButton {
+    font-size: 1rem;
+    padding: 16px 30px;
+    width: 100%;
+    max-width: 350px;
   }
 }

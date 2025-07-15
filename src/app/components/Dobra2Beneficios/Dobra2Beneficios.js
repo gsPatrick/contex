@@ -65,32 +65,30 @@ export default function Dobra2Beneficios() {
     }
   ];
 
-  const finalCtaText = "Transforme sua carreira com o CONTOX. Garanta seu ingresso!";
+  // --- TEXTO ALTERADO ---
+  const finalCtaText = "Transforme seu conhecimento em resultados reais. Garanta seu ingresso!";
   const finalCtaLink = "https://www.sympla.com.br/evento/contox-goiania-2025/2609704";
 
   return (
     <section ref={sectionRef} className={`${styles.benefitsSection} ${isVisible ? styles.isVisible : ''}`}>
       {/* Coluna da Esquerda: Vídeo */}
       <div className={styles.videoColumn}>
-        {/* VÍDEO DE FUNDO DESFOCADO */}
         <video
           aria-hidden="true"
           className={styles.videoBackground}
           src="/videos/contox-hero-video.mp4"
           autoPlay loop muted playsInline
         />
-        {/* VÍDEO PRINCIPAL */}
         <video
           className={styles.videoElement}
           src="/videos/contox-hero-video.mp4"
           autoPlay loop muted playsInline
-          // poster="/images/contox-benefits-poster.jpg"
         >
           Seu navegador não suporta a tag de vídeo.
         </video>
       </div>
 
-      {/* Coluna da Direita: Conteúdo de Benefícios com estilo da Dobra 4 */}
+      {/* Coluna da Direita: Conteúdo de Benefícios */}
       <div className={styles.contentColumn}>
         <h2 className={styles.sectionTitle}>Por que você não pode perder o CONTOX Goiânia:</h2>
         <p className={styles.sectionDescription}>{sectionDescriptionText}</p>
@@ -117,12 +115,11 @@ export default function Dobra2Beneficios() {
             </div>
           ))}
         </div>
-        <a href={finalCtaLink} target="_blank" rel="noopener noreferrer" className={styles.finalCtaLink}>
+        {/* --- ELEMENTO ALTERADO PARA UM BOTÃO --- */}
+        <a href={finalCtaLink} target="_blank" rel="noopener noreferrer" className={styles.finalCtaButton}>
             {finalCtaText}
-            <span>→</span>
         </a>
       </div>
     </section>
   );
 }
-// --- END OF FILE Dobra2Beneficios.js ---
