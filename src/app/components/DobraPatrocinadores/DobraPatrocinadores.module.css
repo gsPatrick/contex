@@ -1,25 +1,20 @@
 /* Estilos para o componente DobraPatrocinadores */
 
-/* --- MUDANÇA PRINCIPAL: A SEÇÃO AGORA É A FAIXA BRANCA --- */
 .patrocinadoresSection {
-  /* A seção inteira agora tem fundo branco */
   background-color: #ffffff;
-  /* Padding vertical para dar espaço ao título e à faixa de logos */
   padding: 4rem 0;
   width: 100%;
-  /* Removemos as bordas superior e inferior, já que não há mais fundo roxo */
 }
 
 .sectionTitle {
+  /* Este seletor não está em uso no JS, mas mantido caso queira adicionar um título */
   text-align: center;
   font-family: var(--font-playfair);
   font-size: 2.8rem;
-  /* A cor do título agora precisa ser escura para contrastar com o branco */
   color: #2c2c2c;
   margin-bottom: 3rem;
   font-weight: 700;
 }
-/* --- FIM DA MUDANÇA PRINCIPAL --- */
 
 .carouselWrapper {
   position: relative;
@@ -29,34 +24,48 @@
 
 .carouselContainer {
   display: flex;
-  overflow-x: scroll;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.carouselContainer::-webkit-scrollbar {
-  display: none;
+  overflow-x: hidden; /* MUDADO: Esconde o overflow horizontal */
 }
 
 .carouselTrack {
   display: flex;
   flex-shrink: 0;
   align-items: center;
+  
+  /* --- NOVA ANIMAÇÃO CSS --- */
+  /* A duração (60s) controla a velocidade. Aumente para mais lento, diminua para mais rápido */
+  animation: scroll 60s linear infinite;
+}
+
+/* Pausa a animação quando o mouse está sobre o carrossel */
+.carouselWrapper:hover .carouselTrack {
+  animation-play-state: paused;
+}
+
+/* Keyframes para a animação de rolagem infinita */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Move a faixa para a esquerda pelo tamanho exato da primeira metade (o conjunto original de logos) */
+    transform: translateX(-50%);
+  }
 }
 
 .logoSlot {
   flex-shrink: 0;
-  /* A altura define o tamanho da faixa */
   height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Removemos o fundo branco daqui, pois ele já está na seção */
+  /* Espaçamento entre os logos */
+  padding: 0 40px; 
 }
 
 .logoImage {
   display: block;
-  height: 100%;
+  max-height: 100%; /* Garante que o logo não ultrapasse a altura do slot */
   width: auto;
   object-fit: contain;
   opacity: 0.8;
@@ -67,7 +76,6 @@
   opacity: 1;
 }
 
-/* --- MUDANÇA PRINCIPAL NO GRADIENTE --- */
 .fade {
   position: absolute;
   top: 0;
@@ -79,27 +87,21 @@
 
 .fadeLeft {
   left: 0;
-  /* O gradiente agora vai de branco para transparente */
   background: linear-gradient(to right, #ffffff 20%, transparent);
 }
 
 .fadeRight {
   right: 0;
-  /* O gradiente agora vai de branco para transparente */
   background: linear-gradient(to left, #ffffff 20%, transparent);
 }
-/* --- FIM DA MUDANÇA PRINCIPAL NO GRADIENTE --- */
 
-/* Botões de navegação agora precisam ser mais visíveis contra o fundo branco */
 .navButton {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
-  /* Fundo mais escuro para contraste */
   background-color: rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  /* Cor do texto escura */
   color: #333;
   border-radius: 50%;
   width: 45px;
@@ -140,10 +142,6 @@
     .patrocinadoresSection {
         padding: 3rem 0;
     }
-  .sectionTitle {
-    font-size: 2.2rem;
-    margin-bottom: 2.5rem;
-  }
   .logoSlot {
     height: 70px;
     padding: 0 2.5rem;
@@ -151,12 +149,14 @@
 }
 
 @media (max-width: 480px) {
+    /* NO MOBILE, A ANIMAÇÃO CSS É A ÚNICA FORMA DE ROLAGEM, ENTÃO GARANTIMOS QUE ELA NÃO PAUSE */
+    .carouselWrapper:hover .carouselTrack {
+        animation-play-state: running;
+    }
+    
     .patrocinadoresSection {
         padding: 2.5rem 0;
     }
-  .sectionTitle {
-    font-size: 1.8rem;
-  }
   .logoSlot {
     height: 60px;
     padding: 0 2rem;

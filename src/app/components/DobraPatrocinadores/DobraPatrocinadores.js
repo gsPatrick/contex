@@ -1,43 +1,20 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useRef } from 'react';
 import styles from './DobraPatrocinadores.module.css';
 
-// --- CORREÇÃO: usar paths relativos da pasta /public ---
 const sponsorLogos = Array.from({ length: 12 }, (_, i) => `/images/icon${i + 1}.png`);
 
 export default function DobraPatrocinadores() {
   const trackRef = useRef(null);
-  const animationFrameRef = useRef(null);
-  const [isPaused, setIsPaused] = useState(false);
 
+  // A lista de logos é duplicada para criar o efeito de loop infinito no CSS
   const duplicatedLogos = [...sponsorLogos, ...sponsorLogos];
 
-  const scrollAnimation = useCallback(() => {
-    if (trackRef.current && !isPaused) {
-      trackRef.current.scrollLeft += 0.5;
-      if (trackRef.current.scrollLeft >= trackRef.current.scrollWidth / 2) {
-        trackRef.current.scrollLeft = 0;
-      }
-    }
-    animationFrameRef.current = requestAnimationFrame(scrollAnimation);
-  }, [isPaused]);
-
-  useEffect(() => {
-    animationFrameRef.current = requestAnimationFrame(scrollAnimation);
-    return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, [scrollAnimation]);
-
-  const handleMouseEnter = () => setIsPaused(true);
-  const handleMouseLeave = () => setIsPaused(false);
-
+  // A função para navegar com os botões permanece, pois é uma funcionalidade extra
   const handleNavClick = (direction) => {
     if (trackRef.current) {
-      const scrollAmount = 400;
+      const scrollAmount = 400; // O quanto rolar a cada clique
       trackRef.current.scrollBy({
         left: direction === 'next' ? scrollAmount : -scrollAmount,
         behavior: 'smooth',
@@ -47,20 +24,15 @@ export default function DobraPatrocinadores() {
 
   return (
     <section className={styles.patrocinadoresSection} aria-label="Nossos Patrocinadores">
-
-
-      <div
-        className={styles.carouselWrapper}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <div className={styles.carouselContainer} ref={trackRef}>
-          <div className={styles.carouselTrack}>
+      <div className={styles.carouselWrapper}>
+        {/* O container agora não precisa pausar a animação, o CSS cuidará disso */}
+        <div className={styles.carouselContainer}>
+          <div className={styles.carouselTrack} ref={trackRef}>
             {duplicatedLogos.map((logo, index) => (
               <div className={styles.logoSlot} key={index}>
                 <img
                   src={logo}
-                  alt={`Grupo de patrocinadores ${index % 12 + 1}`}
+                  alt={`Logo do patrocinador ${index % 12 + 1}`}
                   className={styles.logoImage}
                   loading="lazy"
                 />
