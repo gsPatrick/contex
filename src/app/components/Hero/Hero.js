@@ -2,43 +2,49 @@
 
 import { useRef, useEffect, useState } from 'react';
 import styles from './Hero.module.css';
-import { useHeroVisibility } from '../../context/HeroVisibilityContext'; // Importa o hook do contexto
+import { useHeroVisibility } from '../../context/HeroVisibilityContext';
 
 export default function Hero() {
-  const heroRef = useRef(null); // Ref para a seção <section>
+  const heroRef = useRef(null);
   const bgRef = useRef(null);
-  const { setIsHeroVisible } = useHeroVisibility(); // Acessa a função para atualizar o contexto
+  const { setIsHeroVisible } = useHeroVisibility();
 
   // Data do evento: 15 de JULHO de 2025, 00:00:00
   const eventDate = new Date('2025-07-15T00:00:00').getTime();
 
+  // --- LÓGICA ATUALIZADA ---
   const calculateTimeLeft = () => {
     const difference = eventDate - new Date().getTime();
-    let timeLeft = {};
+    const now = new Date();
+    const target = new Date(eventDate);
 
+    // Se ainda há tempo
     if (difference > 0) {
-      timeLeft = {
+      return {
         dias: Math.floor(difference / (1000 * 60 * 60 * 24)),
         horas: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutos: Math.floor((difference / 1000 / 60) % 60),
         segundos: Math.floor((difference / 1000) % 60),
-      };
-    } else {
-      timeLeft = {
-        dias: 0,
-        horas: 0,
-        minutos: 0,
-        segundos: 0,
-        expired: true
+        status: 'counting',
       };
     }
-    return timeLeft;
+
+    // Se a diferença é negativa, checar se é o mesmo dia
+    if (
+        now.getFullYear() === target.getFullYear() &&
+        now.getMonth() === target.getMonth() &&
+        now.getDate() === target.getDate()
+    ) {
+        return { dias: 0, horas: 0, minutos: 0, segundos: 0, status: 'today' };
+    }
+
+    // Se já passou o dia do evento
+    return { dias: 0, horas: 0, minutos: 0, segundos: 0, status: 'expired' };
   };
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
-    // Efeito Parallax
     const handleScroll = () => {
       if (heroRef.current && bgRef.current) {
         const scrollY = window.scrollY;
@@ -47,25 +53,21 @@ export default function Hero() {
     };
     window.addEventListener('scroll', handleScroll);
 
-    // Cronômetro
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
-    // Intersection Observer para controlar a visibilidade
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Atualiza o estado global com base na visibilidade do Hero
         setIsHeroVisible(entry.isIntersecting);
       },
-      { threshold: 0.1 } // Ativa quando 10% do Hero está visível/invisível
+      { threshold: 0.1 }
     );
 
     if (heroRef.current) {
       observer.observe(heroRef.current);
     }
 
-    // Limpeza ao desmontar o componente
     return () => {
       window.removeEventListener('scroll', handleScroll);
       clearInterval(timer);
@@ -73,33 +75,32 @@ export default function Hero() {
         observer.unobserve(heroRef.current);
       }
     };
-  }, [setIsHeroVisible]); // Adiciona setIsHeroVisible como dependência
+  }, [setIsHeroVisible]);
 
   // Prepara os componentes do timer para renderização
-  const timerComponents = [];
-  Object.keys(timeLeft).forEach((interval) => {
-    if (interval === 'expired') return;
-    timerComponents.push(
+  const renderTimer = () => {
+    // Retorna um array com os itens do contador (dias, horas, etc.)
+    return ['dias', 'horas', 'minutos', 'segundos'].map((interval) => (
       <div key={interval} className={styles.countdownItem}>
-        <span className={styles.countdownValue}>{timeLeft[interval] < 10 ? '0' + timeLeft[interval] : timeLeft[interval]}</span>
+        <span className={styles.countdownValue}>
+          {String(timeLeft[interval]).padStart(2, '0')}
+        </span>
         <span className={styles.countdownLabel}>{interval.toUpperCase()}</span>
       </div>
-    );
-  });
+    ));
+  };
+
 
   return (
-    // O ref é adicionado aqui na tag <section>
     <section className={styles.hero} ref={heroRef}>
       <div className={styles.heroBackground} ref={bgRef}></div>
 
       <div className={styles.heroContent}>
-        {/* Top Bar */}
         <div className={styles.topBar}>
           <h2 className={styles.topBarLogo}>CONTOX Conf.</h2>
           <span className={styles.topBarInfo}>15, 16 e 17 DE JULHO DE 2025 | CENTRO DE CONVENÇÕES DE GOIÂNIA</span>
         </div>
 
-        {/* Conteúdo de Texto Central */}
         <div className={styles.textContent}>
           <h1 className={styles.heroTitle}>
             O Maior Evento de Harmonização Facial e Estética Avançada do Centro-Oeste!
@@ -109,19 +110,32 @@ export default function Hero() {
             técnicas inovadoras e tendências exclusivas que vão transformar seu negócio e sua carreira.
           </p>
 
-          {/* Cronômetro ou Mensagem de Evento Iniciado */}
-          {timeLeft.expired ? (
-            <p className={styles.eventStatusMessage}>O evento já começou!</p>
-          ) : (
+          {/* --- RENDERIZAÇÃO CONDICIONAL ATUALIZADA --- */}
+          {timeLeft.status === 'counting' && (
             <div className={styles.countdownTimer}>
-              {timerComponents.length ? timerComponents : <span>Carregando cronômetro...</span>}
+              {renderTimer()}
             </div>
           )}
 
-          {/* Botão CTA */}
-          <a href="https://link-de-vendas-contox.com.br" target="_blank" className={`${styles.ctaButton} cta-ingresso animated-glow`}>
-            GARANTIR MEU INGRESSO AGORA
-          </a>
+          {timeLeft.status === 'today' && (
+            <>
+              <p className={styles.eventStatusMessage}>O evento é hoje! Ainda dá tempo de garantir sua vaga!</p>
+              <div className={styles.countdownTimer}>
+                {renderTimer()}
+              </div>
+            </>
+          )}
+
+          {timeLeft.status === 'expired' && (
+             <p className={styles.eventStatusMessage}>O evento já foi encerrado. Nos vemos na próxima edição!</p>
+          )}
+
+          {/* O botão só aparece se o evento não tiver expirado */}
+          {timeLeft.status !== 'expired' && (
+            <a href="https://www.sympla.com.br/evento/contox-goiania-2025/2609704" target="_blank" className={`${styles.ctaButton} cta-ingresso animated-glow`}>
+              GARANTIR MEU INGRESSO AGORA
+            </a>
+          )}
         </div>
       </div>
     </section>

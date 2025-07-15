@@ -85,7 +85,7 @@ export default function Dobra5LotesUrgencia() {
                 <p className={styles.currentPrice}>R$ 750,00</p>
                 
               </div>
-              <a href="#" className={styles.buyButton}>
+              <a href="https://www.sympla.com.br/evento/contox-goiania-2025/2609704" className={styles.buyButton}>
                 Comprar
               </a>
             </div>

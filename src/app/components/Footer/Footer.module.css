@@ -10,7 +10,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 30px; /* REDUZIDO significativamente o padding */
+  /* Padding base com espaço para desktop */
+  padding: 40px 30px 120px; 
   overflow: hidden;
 
   background-color: #0a0010; /* NOVA cor de fundo */
@@ -240,7 +241,8 @@
 /* --- Responsividade --- */
 @media (max-width: 768px) {
   .footerSection {
-    padding: 30px 20px; /* Ajustado */
+    /* MODIFICADO: Aumentei o padding-bottom para dar mais espaço no tablet */
+    padding: 30px 20px 170px;
   }
   .createdBy {
     font-size: 0.75rem;
@@ -303,7 +305,8 @@
 
 @media (max-width: 480px) {
   .footerSection {
-    padding: 25px 15px; /* Ajustado */
+    /* MODIFICADO: Aumentei ainda mais o padding-bottom para mobile pequeno */
+    padding: 25px 15px 190px;
   }
   .facialAcademyLogo {
     width: 120px; /* Ajustado */

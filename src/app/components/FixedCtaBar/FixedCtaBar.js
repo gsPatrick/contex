@@ -2,61 +2,70 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import styles from './FixedCtaBar.module.css';
-import { useHeroVisibility } from '../../context/HeroVisibilityContext'; // Importa o hook do contexto
+import { useHeroVisibility } from '../../context/HeroVisibilityContext';
 
-// Função para calcular o tempo restante.
+// --- LÓGICA ATUALIZADA (MESMA DO HERO) ---
 const calculateTimeLeft = (targetDate) => {
-  const difference = targetDate - new Date().getTime();
-  
-  if (difference > 0) {
-    return {
-      dias: String(Math.floor(difference / (1000 * 60 * 60 * 24))).padStart(2, '0'),
-      horas: String(Math.floor((difference / (1000 * 60 * 60)) % 24)).padStart(2, '0'),
-      minutos: String(Math.floor((difference / 1000 / 60) % 60)).padStart(2, '0'),
-      segundos: String(Math.floor((difference / 1000) % 60)).padStart(2, '0'),
-    };
-  }
-  return null; // Retorna null se o tempo já expirou
+    const difference = targetDate - new Date().getTime();
+    const now = new Date();
+    const target = new Date(targetDate);
+
+    if (difference > 0) {
+        return {
+            dias: String(Math.floor(difference / (1000 * 60 * 60 * 24))).padStart(2, '0'),
+            horas: String(Math.floor((difference / (1000 * 60 * 60)) % 24)).padStart(2, '0'),
+            minutos: String(Math.floor((difference / 1000 / 60) % 60)).padStart(2, '0'),
+            segundos: String(Math.floor((difference / 1000) % 60)).padStart(2, '0'),
+            status: 'counting',
+        };
+    }
+    
+    if (
+        now.getFullYear() === target.getFullYear() &&
+        now.getMonth() === target.getMonth() &&
+        now.getDate() === target.getDate()
+    ) {
+        return { dias: '00', horas: '00', minutos: '00', segundos: '00', status: 'today' };
+    }
+
+    return { dias: '00', horas: '00', minutos: '00', segundos: '00', status: 'expired' };
 };
 
 export default function FixedCtaBar() {
-  const { isHeroVisible } = useHeroVisibility(); // Acessa o estado de visibilidade do Hero
+  const { isHeroVisible } = useHeroVisibility();
 
-  // A data do evento, a mesma do Hero.
   const eventDate = useMemo(() => new Date('2025-07-15T00:00:00').getTime(), []);
   
-  // Estado para o contador
   const [timeLeft, setTimeLeft] = useState(null);
 
   useEffect(() => {
-    // Define o valor inicial assim que o componente é montado no cliente
     setTimeLeft(calculateTimeLeft(eventDate));
 
     const timer = setInterval(() => {
-      const newTimeLeft = calculateTimeLeft(eventDate);
-      setTimeLeft(newTimeLeft);
-
-      if (!newTimeLeft) {
-        clearInterval(timer);
-      }
+      setTimeLeft(calculateTimeLeft(eventDate));
     }, 1000);
 
     return () => clearInterval(timer);
   }, [eventDate]);
 
-  // CONDIÇÃO DE RENDERIZAÇÃO ATUALIZADA:
-  // Não renderiza a barra se:
-  // 1. O contador ainda não foi calculado (timeLeft é null)
-  // 2. O Hero está visível na tela
-  if (!timeLeft || isHeroVisible) {
+  // --- CONDIÇÃO DE RENDERIZAÇÃO ATUALIZADA ---
+  // Não renderiza se:
+  // 1. O estado inicial for null
+  // 2. O Hero estiver visível
+  // 3. O evento já expirou (passou do dia)
+  if (!timeLeft || isHeroVisible || timeLeft.status === 'expired') {
     return null;
   }
+
+  const promoText = timeLeft.status === 'today' 
+    ? "O evento é hoje! Compre agora:" 
+    : "O lote promocional termina em:";
 
   return (
     <div className={styles.fixedBar}>
       <div className={styles.contentWrapper}>
         <div className={styles.promoTextContainer}>
-          <span className={styles.promoText}>O evento começa em:</span>
+          <span className={styles.promoText}>{promoText}</span>
         </div>
 
         <div className={styles.countdown}>
@@ -82,7 +91,7 @@ export default function FixedCtaBar() {
         </div>
         
         <a 
-          href="https://link-de-vendas-contox.com.br" 
+          href="https://www.sympla.com.br/evento/contox-goiania-2025/2609704" 
           target="_blank" 
           rel="noopener noreferrer" 
           className={styles.ctaButton}
