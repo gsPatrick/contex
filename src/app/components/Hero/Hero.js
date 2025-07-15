@@ -9,10 +9,9 @@ export default function Hero() {
   const bgRef = useRef(null);
   const { setIsHeroVisible } = useHeroVisibility();
 
-  // Data do evento: 15 de JULHO de 2025, 00:00:00
-  const eventDate = new Date('2025-07-15T00:00:00').getTime();
+  // --- DATA ATUALIZADA PARA 15 DE AGOSTO DE 2025 ---
+  const eventDate = new Date('2025-08-15T00:00:00').getTime();
 
-  // --- LÓGICA ATUALIZADA ---
   const calculateTimeLeft = () => {
     const difference = eventDate - new Date().getTime();
     const now = new Date();
@@ -79,7 +78,6 @@ export default function Hero() {
 
   // Prepara os componentes do timer para renderização
   const renderTimer = () => {
-    // Retorna um array com os itens do contador (dias, horas, etc.)
     return ['dias', 'horas', 'minutos', 'segundos'].map((interval) => (
       <div key={interval} className={styles.countdownItem}>
         <span className={styles.countdownValue}>
@@ -98,7 +96,8 @@ export default function Hero() {
       <div className={styles.heroContent}>
         <div className={styles.topBar}>
           <h2 className={styles.topBarLogo}>CONTOX Conf.</h2>
-          <span className={styles.topBarInfo}>15, 16 e 17 DE JULHO DE 2025 | CENTRO DE CONVENÇÕES DE GOIÂNIA</span>
+          {/* Você pode querer atualizar a data aqui também se for o caso */}
+          <span className={styles.topBarInfo}>15, 16 e 17 DE AGOSTO DE 2025 | CENTRO DE CONVENÇÕES DE GOIÂNIA</span>
         </div>
 
         <div className={styles.textContent}>
@@ -110,7 +109,6 @@ export default function Hero() {
             técnicas inovadoras e tendências exclusivas que vão transformar seu negócio e sua carreira.
           </p>
 
-          {/* --- RENDERIZAÇÃO CONDICIONAL ATUALIZADA --- */}
           {timeLeft.status === 'counting' && (
             <div className={styles.countdownTimer}>
               {renderTimer()}
@@ -130,9 +128,8 @@ export default function Hero() {
              <p className={styles.eventStatusMessage}>O evento já foi encerrado. Nos vemos na próxima edição!</p>
           )}
 
-          {/* O botão só aparece se o evento não tiver expirado */}
           {timeLeft.status !== 'expired' && (
-            <a href="https://www.sympla.com.br/evento/contox-goiania-2025/2609704" target="_blank" className={`${styles.ctaButton} cta-ingresso animated-glow`}>
+            <a href="https://link-de-vendas-contox.com.br" target="_blank" className={`${styles.ctaButton} cta-ingresso animated-glow`}>
               GARANTIR MEU INGRESSO AGORA
             </a>
           )}

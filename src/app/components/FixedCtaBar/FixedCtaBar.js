@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import styles from './FixedCtaBar.module.css';
 import { useHeroVisibility } from '../../context/HeroVisibilityContext';
 
-// --- LÓGICA ATUALIZADA (MESMA DO HERO) ---
+// --- LÓGICA ATUALIZADA PARA AGOSTO ---
 const calculateTimeLeft = (targetDate) => {
     const difference = targetDate - new Date().getTime();
     const now = new Date();
@@ -34,7 +34,8 @@ const calculateTimeLeft = (targetDate) => {
 export default function FixedCtaBar() {
   const { isHeroVisible } = useHeroVisibility();
 
-  const eventDate = useMemo(() => new Date('2025-07-15T00:00:00').getTime(), []);
+  // --- DATA ATUALIZADA PARA 15 DE AGOSTO DE 2025 ---
+  const eventDate = useMemo(() => new Date('2025-08-15T00:00:00').getTime(), []);
   
   const [timeLeft, setTimeLeft] = useState(null);
 
@@ -48,11 +49,6 @@ export default function FixedCtaBar() {
     return () => clearInterval(timer);
   }, [eventDate]);
 
-  // --- CONDIÇÃO DE RENDERIZAÇÃO ATUALIZADA ---
-  // Não renderiza se:
-  // 1. O estado inicial for null
-  // 2. O Hero estiver visível
-  // 3. O evento já expirou (passou do dia)
   if (!timeLeft || isHeroVisible || timeLeft.status === 'expired') {
     return null;
   }
@@ -91,7 +87,7 @@ export default function FixedCtaBar() {
         </div>
         
         <a 
-          href="https://www.sympla.com.br/evento/contox-goiania-2025/2609704" 
+          href="https://link-de-vendas-contox.com.br" 
           target="_blank" 
           rel="noopener noreferrer" 
           className={styles.ctaButton}
