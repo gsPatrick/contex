@@ -3,9 +3,8 @@
 import './globals.css';
 import { Playfair_Display, Montserrat } from 'next/font/google';
 import FixedCtaBar from './components/FixedCtaBar/FixedCtaBar';
-import { HeroVisibilityProvider } from './context/HeroVisibilityContext'; // 1. IMPORTAR O PROVIDER
-
-// ... (configuração das fontes)
+import { HeroVisibilityProvider } from './context/HeroVisibilityContext';
+import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton'; // 1. IMPORTAR O BOTÃO
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -28,12 +27,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" className={`${playfair.variable} ${montserrat.variable}`}>
-      <head>{/* ... */}</head>
+      <head>{/* Next.js gerencia as tags <head> principais aqui */}</head>
       <body>
-        {/* 2. ENVOLVER TUDO COM O PROVIDER */}
         <HeroVisibilityProvider>
           {children}
           <FixedCtaBar />
+          <WhatsAppButton /> {/* 2. ADICIONAR O COMPONENTE DO BOTÃO AQUI */}
         </HeroVisibilityProvider>
       </body>
     </html>

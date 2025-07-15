@@ -92,7 +92,7 @@ export default function Hero() {
         <div className={styles.topBar}>
           {/* --- ALTERAÇÃO 1: Troca do h2 pela imagem da logo --- */}
           <img 
-            src="/images/logo.png" 
+            src="/images/logo-goiania-25.png" 
             alt="CONTOX Logo" 
             className={styles.topBarLogo} 
           />

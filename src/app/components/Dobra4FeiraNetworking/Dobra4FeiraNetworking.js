@@ -58,7 +58,7 @@ export default function Dobra4FeiraNetworking() {
 
     const finalCtaText = "Transforme seu conhecimento em resultados reais. Garanta seu ingresso!";
     const finalCtaLink = "https://www.sympla.com.br/evento/contox-goiania-2025/2609704";
-    const imageSrc = "/images/contox-event-details-main.jpg";
+    const imageSrc = "/images/contex.png";
 
     return (
         <section ref={sectionRef} className={`${styles.dobraSection} ${isVisible ? styles.isVisible : ''}`}>

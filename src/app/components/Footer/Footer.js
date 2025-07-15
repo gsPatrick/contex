@@ -54,37 +54,19 @@ export default function Footer() {
             Dúvidas sobre o evento, parcerias ou necessidade de informações adicionais:
           </p>
           <p className={styles.contactText}>
-            CONTOX Eventos | CNPJ: SUBSTITUIR POR CNPJ
+            MS BUSINESS EVENTOS LTDA | CNPJ: 59.649.559/0001-90
           </p>
           <p className={styles.contactText}>
             Local: Centro de Convenções de Goiânia - R. 4, 1400 - St. Central, Goiânia - GO
           </p>
            <p className={styles.contactText}>
-            Telefone: SUBSTITUIR POR TELEFONE | Email: <a href="mailto:contato@contox.com.br" className={styles.emailLink}>contato@contox.com.br</a>
+            Telefone:  62 99675 9228 | Email: <a href="mailto:contato@contox.com.br" className={styles.emailLink}>contato@contox.com.br</a>
           </p>
         </div>
 
-        {/* Linha Divisória */}
-        <hr className={styles.divider} />
-
-        {/* Aviso Legal */}
-        <div className={styles.legalNotice}>
-          <p className={styles.legalTitle}>AVISO LEGAL</p>
-          <p className={styles.legalText}>
-            As informações, técnicas e opiniões apresentadas pelos palestrantes durante o CONTOX Goiânia 2025 são de responsabilidade exclusiva dos mesmos. A participação no evento destina-se à atualização e ao aprimoramento de profissionais qualificados nas áreas de harmonização facial e estética avançada. A aplicação de quaisquer procedimentos deve sempre respeitar a legislação vigente e as resoluções dos respectivos conselhos de classe.
-          </p>
-        </div>
-
-        {/* Linha Divisória */}
-        <hr className={styles.divider} />
 
         {/* Comissão Organizadora */}
-        <div className={styles.teamInfo}>
-          <p className={styles.teamTitle}>Comissão Organizadora:</p>
-          <p className={styles.teamMember}>Dra. Camila Dias CRO PR 24954</p>
-          <p className={styles.teamMember}>Dr. Wagner Baseggio CRO PR 16109</p>
-        </div>
-
+ 
         {/* Linha Divisória */}
         <hr className={styles.divider} />
 
