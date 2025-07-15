@@ -36,7 +36,7 @@ export default function Dobra6CtaFinal() {
   const locationTitle = "Local do Evento:";
   const locationName = "Centro de Convenções de Goiânia";
   const finalPhrase = "Seu crescimento profissional começa aqui.";
-  const ctaLink = "https://link-de-vendas-contox.com.br";
+  const ctaLink = "https://www.sympla.com.br/evento/contox-goiania-2025/2609704";
   const ctaText = "GARANTIR MEU INGRESSO AGORA";
 
   return (

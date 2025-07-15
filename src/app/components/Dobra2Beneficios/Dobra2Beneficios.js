@@ -66,7 +66,7 @@ export default function Dobra2Beneficios() {
   ];
 
   const finalCtaText = "Transforme sua carreira com o CONTOX. Garanta seu ingresso!";
-  const finalCtaLink = "https://link-de-vendas-contox.com.br";
+  const finalCtaLink = "https://www.sympla.com.br/evento/contox-goiania-2025/2609704";
 
   return (
     <section ref={sectionRef} className={`${styles.benefitsSection} ${isVisible ? styles.isVisible : ''}`}>
