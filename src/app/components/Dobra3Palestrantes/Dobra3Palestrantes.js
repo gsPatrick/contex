@@ -112,7 +112,7 @@ const speakers = [
   },
   {
     name: 'Vitor Pracheds',
-    description: 'Especialista em Harmonização Facial, referência em sua área de atuação.',
+    description: 'Especialista em Tráfego Pago e Times Comerciais para Clínicas de Harmonização Facial',
     image: '/images/VitorPracheds.png',
     country: '🇧🇷',
   },
@@ -185,7 +185,7 @@ const speakers = [
   {
     name: 'Isabela Bittencourt',
     description: 'Especialista em Harmonização Facial, referência em sua área de atuação.',
-    image: '/images/isabela.png',
+    image: '/images/Isabelaum.png',
     country: '🇧🇷',
   },
   {

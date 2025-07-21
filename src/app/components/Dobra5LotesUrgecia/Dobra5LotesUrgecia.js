@@ -15,10 +15,9 @@ const CheckIcon = () => (
 const benefits = [
   { title: 'Certificado de Participação', description: 'Receba o certificado de 24 horas de participação aos 3 dias do evento' },
   { title: 'Acesso total aos 3 dias de evento', description: null },
-  { title: '130+ conteúdos disponíveis', description: 'Uma imersão em temas atuais, tendências e práticas do universo odontológico.' },
+  { title: 'Conhecimento é Poder', description: null },
   { title: 'Condições exclusivas de compra com os patrocinadores', description: 'Vantagem que só participantes tem acesso.' },
   { title: 'Acesso prioritário à experiência "Hands On"', description: 'Interaja com as atividades e experiências práticas do evento.' },
-  { title: 'Conhecimento é Poder', description: null },
 ];
 
 export default function Dobra5LotesUrgencia() {
@@ -75,7 +74,7 @@ export default function Dobra5LotesUrgencia() {
         <div className={styles.rightColumn}>
           <div className={styles.pricingCard}>
             <div className={styles.cardHeader}>
-              <h3>Contex Ingresso</h3>
+              <h3>CONTOX Ingresso</h3>
             </div>
             <div className={styles.cardBody}>
               <div className={styles.priceInfo}>

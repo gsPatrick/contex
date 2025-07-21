@@ -5,7 +5,7 @@ import styles from './WhatsAppButton.module.css';
 
 export default function WhatsAppButton() {
     // --- IMPORTANTE: Substitua os valores abaixo ---
-    const phoneNumber = "5511999999999"; // Coloque o número de telefone com DDD, sem + ou espaços
+    const phoneNumber = "5562996759228"; // Coloque o número de telefone com DDD, sem + ou espaços
     const message = "Olá! Gostaria de mais informações sobre o CONTOX Goiânia."; // Mensagem inicial
     
     const encodedMessage = encodeURIComponent(message);
