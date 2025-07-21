@@ -13,13 +13,12 @@ const CheckIcon = () => (
 
 // Dados dos benefícios replicados da imagem
 const benefits = [
-  { title: 'Certificado Oficial', description: 'Emitido pela renomada São Leopoldo Mandic.' },
-  { title: 'Acesso total aos 2 dias de evento', description: null },
+  { title: 'Certificado de Participação', description: 'Receba o certificado de 24 horas de participação aos 3 dias do evento' },
+  { title: 'Acesso total aos 3 dias de evento', description: null },
   { title: '130+ conteúdos disponíveis', description: 'Uma imersão em temas atuais, tendências e práticas do universo odontológico.' },
   { title: 'Condições exclusivas de compra com os patrocinadores', description: 'Vantagem que só participantes tem acesso.' },
   { title: 'Acesso prioritário à experiência "Hands On"', description: 'Interaja com as atividades e experiências práticas do evento.' },
-  { title: 'Aplicativo oficial do evento', description: 'Conecte-se, monte sua agenda, interaja e aproveite cada detalhe com praticidade.' },
-  { title: 'Acesso ao Food Park', description: null },
+  { title: 'Conhecimento é Poder', description: null },
 ];
 
 export default function Dobra5LotesUrgencia() {

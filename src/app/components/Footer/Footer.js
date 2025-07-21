@@ -45,7 +45,7 @@ export default function Footer() {
           */}
           <img src="/images/logo.png" alt="Realização Facial Academy" className={styles.facialAcademyLogo} />
         </div>
-        <h3 className={styles.mainHeadline}>CONTOX Goiânia 2025: O Maior Evento de Harmonização Facial e Estética Avançada do Centro-Oeste!</h3>
+        <h3 className={styles.mainHeadline}>CONTOX Goiânia 2025: O Congresso de Harmonização Facial e Corporal Mais Tradicional da América Latina</h3>
         <p className={styles.statistic}>Mais de 40 palestrantes. 3 dias de imersão total.</p>
 
         {/* Bloco de Contato / Endereço */}
@@ -60,7 +60,7 @@ export default function Footer() {
             Local: Centro de Convenções de Goiânia - R. 4, 1400 - St. Central, Goiânia - GO
           </p>
            <p className={styles.contactText}>
-            Telefone:  62 99675 9228 | Email: <a href="mailto:contato@contox.com.br" className={styles.emailLink}>contato@contox.com.br</a>
+            Telefone:  62 99675 9228 | Email: <a href="mailto:mseventoscontox@gmail.com" className={styles.emailLink}>mseventoscontox@gmail.com</a>
           </p>
         </div>
 

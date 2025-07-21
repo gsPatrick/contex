@@ -54,17 +54,14 @@ export default function Dobra7Faq() {
             question: "O que está incluído no ingresso?",
             answer: "Seu ingresso garante acesso a todas as palestras, workshops (sujeitos a lotação ou inscrição prévia para alguns), acesso à feira comercial exclusiva e certificado de participação. Mais detalhes sobre pacotes específicos serão divulgados em breve."
         },
-        {
-            question: "Haverá opção de participação online?",
-            answer: "Sim, o CONTOX Goiânia 2025 será em formato híbrido, oferecendo opções de participação presencial e online para que você possa escolher a que melhor se adapta às suas necessidades. Detalhes sobre a modalidade online serão anunciados."
-        },
+
         {
             question: "Como posso me tornar um patrocinador ou expositor?",
             answer: "Empresas interessadas em expor seus produtos, serviços ou se tornarem patrocinadoras do CONTOX podem entrar em contato através do nosso WhatsApp ou e-mail na seção de contato. Teremos o prazer de apresentar as oportunidades disponíveis."
         },
         {
             question: "Qual o local e datas do evento?",
-            answer: "O CONTOX Goiânia 2025 acontecerá nos dias 15, 16 e 17 de Março de 2025, no Centro de Convenções de Goiânia."
+            answer: "O CONTOX Goiânia 2025 acontecerá nos dias 15, 16 e 17 de Agosto de 2025, no Centro de Convenções de Goiânia."
         }
     ];
 
