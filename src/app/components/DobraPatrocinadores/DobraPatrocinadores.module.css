@@ -1,10 +1,8 @@
-/* Estilos para o componente DobraPatrocinadores (OTIMIZADO) */
+/* Estilos para o componente DobraPatrocinadores (IMAGENS MAIORES) */
 
 .patrocinadoresSection {
-  /* Usando a variável de cor global para consistência */
-  background-color: var(--color-white); 
-  /* Mais espaçamento vertical para acomodar logos maiores */
-  padding: 6rem 0;
+  background-color: var(--color-white);
+  padding: 5rem 0;
   width: 100%;
 }
 
@@ -12,7 +10,6 @@
   position: relative;
   max-width: 100%;
   margin: 0 auto;
-  /* O overflow agora é controlado aqui para garantir que nada escape */
   overflow: hidden;
 }
 
@@ -24,14 +21,9 @@
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  
-  /* Animação CSS otimizada. 
-     Aumentamos a duração para 80s para uma rolagem mais suave e elegante.
-     Ajuste este valor se desejar mais rápido (menor) ou mais lento (maior). */
-  animation: scroll 80s linear infinite;
+  animation: scroll 40s linear infinite;
 }
 
-/* Pausa a animação no hover em desktops para permitir que o usuário veja um logo específico */
 .carouselWrapper:hover .carouselTrack {
   animation-play-state: paused;
 }
@@ -41,35 +33,25 @@
     transform: translateX(0);
   }
   to {
-    /* O cálculo agora é baseado no novo tamanho da lista (1/4 do total) */
     transform: translateX(-25%);
   }
 }
 
 .logoSlot {
   flex-shrink: 0;
-  /* TAMANHO AUMENTADO: As logos agora são mais altas */
-  height: 110px; 
+  /* ALTURA AUMENTADA PARA TODAS AS TELAS: Isso fará com que as imagens fiquem maiores */
+  height: 140px; /* Aumentado de 110px */
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Espaçamento horizontal aumentado */
-  padding: 0 50px; 
+  padding: 0 25px; /* Mantido o espaçamento "quase colado" */
 }
 
 .logoImage {
   display: block;
-  max-height: 100%;
+  max-height: 100%; /* Permite que a imagem preencha a nova altura do slot */
   width: auto;
   object-fit: contain;
-  filter: grayscale(100%); /* Logos em preto e branco para um visual mais limpo */
-  opacity: 0.6;
-  transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-/* Logo ganha cor e destaque no hover */
-.logoSlot:hover .logoImage {
-  filter: grayscale(0%);
   opacity: 1;
 }
 
@@ -77,54 +59,50 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 15%;
+  width: 10%;
   pointer-events: none;
   z-index: 2;
 }
 
 .fadeLeft {
   left: 0;
-  /* Usando a variável de cor global */
-  background: linear-gradient(to right, var(--color-white) 20%, transparent);
+  background: linear-gradient(to right, var(--color-white) 10%, transparent);
 }
 
 .fadeRight {
   right: 0;
-  /* Usando a variável de cor global */
-  background: linear-gradient(to left, var(--color-white) 20%, transparent);
+  background: linear-gradient(to left, var(--color-white) 10%, transparent);
 }
 
-/* ESTILOS DE BOTÃO REMOVIDOS, pois os botões foram removidos do componente */
 
-/* Responsividade ajustada para os novos tamanhos */
+/* --- Responsividade com logos AINDA MAIORES no mobile --- */
 @media (max-width: 1024px) {
   .logoSlot {
-    height: 90px;
-    padding: 0 3rem;
+    height: 110px; /* Aumentado de 90px */
+    padding: 0 20px;
   }
 }
 
 @media (max-width: 768px) {
-    .patrocinadoresSection {
-        padding: 4rem 0;
-    }
-    .logoSlot {
-      height: 80px;
-      padding: 0 2.5rem;
-    }
+  .patrocinadoresSection {
+    padding: 4rem 0;
+  }
+  .logoSlot {
+    height: 100px; /* Aumentado de 90px */
+    padding: 0 15px;
+  }
 }
 
 @media (max-width: 480px) {
-    /* No mobile, a animação continua mesmo com o toque na tela */
-    .carouselWrapper:hover .carouselTrack {
-        animation-play-state: running;
-    }
-    
-    .patrocinadoresSection {
-        padding: 3rem 0;
-    }
-    .logoSlot {
-      height: 70px;
-      padding: 0 2rem;
-    }
+  .carouselWrapper:hover .carouselTrack {
+    animation-play-state: running;
+  }
+  
+  .patrocinadoresSection {
+    padding: 3rem 0;
+  }
+  .logoSlot {
+    height: 90px; /* Aumentado de 85px para garantir maior visibilidade em telas muito pequenas */
+    padding: 0 15px;
+  }
 }
