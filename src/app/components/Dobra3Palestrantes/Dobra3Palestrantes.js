@@ -7,6 +7,13 @@ import styles from './Dobra3Palestrantes.module.css';
 
 // DADOS ATUALIZADOS com as informações da sua captura de tela
 const speakers = [
+  
+    {
+    name: 'Simone Lopes',
+    description: 'Especialista em Harmonização Facial, referência em sua área de atuação.',
+    image: '/images/SimoneLopes.png',
+    country: '🇧🇷',
+  },
   {
     name: 'Nelson Mauricio',
     description: 'Farmacêutico Bioquímico e Coordenador de Cursos para Profissionais para a Saúde da Pele.',
@@ -144,12 +151,6 @@ const speakers = [
     name: 'Lorise Gonçalves',
     description: 'Especialista em Harmonização Facial, referência em sua área de atuação.',
     image: '/images/Lorise.png',
-    country: '🇧🇷',
-  },
-  {
-    name: 'Simone Lopes',
-    description: 'Especialista em Harmonização Facial, referência em sua área de atuação.',
-    image: '/images/SimoneLopes.png',
     country: '🇧🇷',
   },
   {
