@@ -49,7 +49,7 @@
 
 .logoImage {
   display: block;
-  max-height: 100%; /* Permite que a imagem preencha a nova altura do slot */
+  max-height: 114%; /* Permite que a imagem preencha a nova altura do slot */
   width: auto;
   object-fit: contain;
   opacity: 1;
