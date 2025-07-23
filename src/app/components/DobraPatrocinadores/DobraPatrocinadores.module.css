@@ -1,30 +1,23 @@
-/* Estilos para o componente DobraPatrocinadores */
+/* Estilos para o componente DobraPatrocinadores (OTIMIZADO) */
 
 .patrocinadoresSection {
-  background-color: #ffffff;
-  padding: 4rem 0;
+  /* Usando a variável de cor global para consistência */
+  background-color: var(--color-white); 
+  /* Mais espaçamento vertical para acomodar logos maiores */
+  padding: 6rem 0;
   width: 100%;
-}
-
-.sectionTitle {
-  /* Este seletor não está em uso no JS, mas mantido caso queira adicionar um título */
-  text-align: center;
-  font-family: var(--font-playfair);
-  font-size: 2.8rem;
-  color: #2c2c2c;
-  margin-bottom: 3rem;
-  font-weight: 700;
 }
 
 .carouselWrapper {
   position: relative;
   max-width: 100%;
   margin: 0 auto;
+  /* O overflow agora é controlado aqui para garantir que nada escape */
+  overflow: hidden;
 }
 
 .carouselContainer {
   display: flex;
-  overflow-x: hidden; /* MUDADO: Esconde o overflow horizontal */
 }
 
 .carouselTrack {
@@ -32,47 +25,51 @@
   flex-shrink: 0;
   align-items: center;
   
-  /* --- NOVA ANIMAÇÃO CSS --- */
-  /* A duração (60s) controla a velocidade. Aumente para mais lento, diminua para mais rápido */
-  animation: scroll 60s linear infinite;
+  /* Animação CSS otimizada. 
+     Aumentamos a duração para 80s para uma rolagem mais suave e elegante.
+     Ajuste este valor se desejar mais rápido (menor) ou mais lento (maior). */
+  animation: scroll 80s linear infinite;
 }
 
-/* Pausa a animação quando o mouse está sobre o carrossel */
+/* Pausa a animação no hover em desktops para permitir que o usuário veja um logo específico */
 .carouselWrapper:hover .carouselTrack {
   animation-play-state: paused;
 }
 
-/* Keyframes para a animação de rolagem infinita */
 @keyframes scroll {
   from {
     transform: translateX(0);
   }
   to {
-    /* Move a faixa para a esquerda pelo tamanho exato da primeira metade (o conjunto original de logos) */
-    transform: translateX(-50%);
+    /* O cálculo agora é baseado no novo tamanho da lista (1/4 do total) */
+    transform: translateX(-25%);
   }
 }
 
 .logoSlot {
   flex-shrink: 0;
-  height: 90px;
+  /* TAMANHO AUMENTADO: As logos agora são mais altas */
+  height: 110px; 
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Espaçamento entre os logos */
-  padding: 0 40px; 
+  /* Espaçamento horizontal aumentado */
+  padding: 0 50px; 
 }
 
 .logoImage {
   display: block;
-  max-height: 100%; /* Garante que o logo não ultrapasse a altura do slot */
+  max-height: 100%;
   width: auto;
   object-fit: contain;
-  opacity: 0.8;
-  transition: opacity 0.3s ease-in-out;
+  filter: grayscale(100%); /* Logos em preto e branco para um visual mais limpo */
+  opacity: 0.6;
+  transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
+/* Logo ganha cor e destaque no hover */
 .logoSlot:hover .logoImage {
+  filter: grayscale(0%);
   opacity: 1;
 }
 
@@ -87,81 +84,47 @@
 
 .fadeLeft {
   left: 0;
-  background: linear-gradient(to right, #ffffff 20%, transparent);
+  /* Usando a variável de cor global */
+  background: linear-gradient(to right, var(--color-white) 20%, transparent);
 }
 
 .fadeRight {
   right: 0;
-  background: linear-gradient(to left, #ffffff 20%, transparent);
+  /* Usando a variável de cor global */
+  background: linear-gradient(to left, var(--color-white) 20%, transparent);
 }
 
-.navButton {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
-  background-color: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #333;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  font-size: 28px;
-  line-height: 43px;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s ease, background-color 0.3s ease;
-}
+/* ESTILOS DE BOTÃO REMOVIDOS, pois os botões foram removidos do componente */
 
-.carouselWrapper:hover .navButton {
-  opacity: 0.5;
-}
-
-.navButton:hover {
-  opacity: 1;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.prevButton {
-  left: 20px;
-}
-
-.nextButton {
-  right: 20px;
-}
-
-/* Responsividade */
+/* Responsividade ajustada para os novos tamanhos */
 @media (max-width: 1024px) {
   .logoSlot {
-    height: 80px;
+    height: 90px;
     padding: 0 3rem;
   }
 }
 
 @media (max-width: 768px) {
     .patrocinadoresSection {
-        padding: 3rem 0;
+        padding: 4rem 0;
     }
-  .logoSlot {
-    height: 70px;
-    padding: 0 2.5rem;
-  }
+    .logoSlot {
+      height: 80px;
+      padding: 0 2.5rem;
+    }
 }
 
 @media (max-width: 480px) {
-    /* NO MOBILE, A ANIMAÇÃO CSS É A ÚNICA FORMA DE ROLAGEM, ENTÃO GARANTIMOS QUE ELA NÃO PAUSE */
+    /* No mobile, a animação continua mesmo com o toque na tela */
     .carouselWrapper:hover .carouselTrack {
         animation-play-state: running;
     }
     
     .patrocinadoresSection {
-        padding: 2.5rem 0;
+        padding: 3rem 0;
     }
-  .logoSlot {
-    height: 60px;
-    padding: 0 2rem;
-  }
-  .navButton {
-    display: none;
-  }
+    .logoSlot {
+      height: 70px;
+      padding: 0 2rem;
+    }
 }
