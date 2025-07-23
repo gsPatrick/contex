@@ -242,7 +242,11 @@ export default function Dobra3Palestrantes() {
         });
       },
       {
-        threshold: 0.1, // Dispara um pouco antes para o efeito ser visto
+        // ----- CORREÇÃO APLICADA AQUI -----
+        // Alterado de 0.1 para 0.
+        // Isso garante que a animação dispare assim que o primeiro pixel
+        // da seção entrar na tela, resolvendo o problema em dispositivos móveis.
+        threshold: 0, 
       }
     );
 
