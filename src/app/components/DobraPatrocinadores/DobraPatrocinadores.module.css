@@ -1,4 +1,4 @@
-/* Estilos para o componente DobraPatrocinadores (IMAGENS MAIORES) */
+/* Estilos para o componente DobraPatrocinadores (OTIMIZADO FINALMENTE) */
 
 .patrocinadoresSection {
   background-color: var(--color-white);
@@ -21,11 +21,16 @@
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  animation: scroll 40s linear infinite;
+  /* Duração base para desktop. Será sobrescrita para mobile. */
+  /* Ajuste este valor se quiser mais rápido ou mais lento no desktop. */
+  animation: scroll 30s linear infinite; /* Deixei um pouco mais rápido para desktop (de 40s para 30s) */
 }
 
-.carouselWrapper:hover .carouselTrack {
-  animation-play-state: paused;
+/* Pausa no hover, aplicada APENAS em telas maiores que 768px (desktop/tablet grande) */
+@media (min-width: 769px) {
+  .carouselWrapper:hover .carouselTrack {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes scroll {
@@ -33,14 +38,16 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-25%);
+    /* --- MUDANÇA IMPORTANTE AQUI --- */
+    /* Como agora temos 8 conjuntos de logos, a rolagem deve ser de 1/8 (12.5%) do total da faixa
+       para criar o loop perfeito. */
+    transform: translateX(-12.5%);
   }
 }
 
 .logoSlot {
   flex-shrink: 0;
-  /* ALTURA AUMENTADA PARA TODAS AS TELAS: Isso fará com que as imagens fiquem maiores */
-  height: 140px; /* Aumentado de 110px */
+  height: 140px; /* Mantido o tamanho grande da imagem */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,7 +56,7 @@
 
 .logoImage {
   display: block;
-  max-height: 114%; /* Permite que a imagem preencha a nova altura do slot */
+  max-height: 100%;
   width: auto;
   object-fit: contain;
   opacity: 1;
@@ -75,10 +82,11 @@
 }
 
 
-/* --- Responsividade com logos AINDA MAIORES no mobile --- */
+/* --- Responsividade (logos maiores e MAIS RÁPIDO no mobile) --- */
+
 @media (max-width: 1024px) {
   .logoSlot {
-    height: 110px; /* Aumentado de 90px */
+    height: 110px;
     padding: 0 20px;
   }
 }
@@ -88,21 +96,30 @@
     padding: 4rem 0;
   }
   .logoSlot {
-    height: 100px; /* Aumentado de 90px */
+    height: 100px;
     padding: 0 15px;
+  }
+  /* --- AUMENTO DE VELOCIDADE NO TABLET/MOBILE GRANDE --- */
+  .carouselTrack {
+    animation-duration: 20s; /* Mais rápido que desktop */
   }
 }
 
 @media (max-width: 480px) {
-  .carouselWrapper:hover .carouselTrack {
-    animation-play-state: running;
-  }
-  
   .patrocinadoresSection {
     padding: 3rem 0;
   }
   .logoSlot {
-    height: 90px; /* Aumentado de 85px para garantir maior visibilidade em telas muito pequenas */
+    height: 90px;
     padding: 0 15px;
+  }
+  /* --- AUMENTO DE VELOCIDADE NO MOBILE PEQUENO --- */
+  .carouselTrack {
+    animation-duration: 12s; /* Bem rápido para garantir que as logos passem rapidamente */
+  }
+  /* No mobile, não há pausa no hover, a animação deve sempre continuar */
+  /* Esta regra é tecnicamente redundante agora com a lógica min-width acima, mas garante */
+  .carouselWrapper:hover .carouselTrack {
+    animation-play-state: running;
   }
 }
